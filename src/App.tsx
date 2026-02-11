@@ -1,0 +1,75 @@
+import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Experience from './components/Experience';
+import Testimonials from './components/Testimonials';
+import Services from './components/Services';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
+import Loading from './components/Loading';
+import Lenis from '@studio-freight/lenis';
+
+function App() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time: number) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        // Simulate loading time
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+
+        return () => {
+            lenis.destroy();
+            clearTimeout(timer);
+        }
+    }, []);
+
+    return (
+        <div className="bg-dark text-white font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+            <AnimatePresence mode='wait'>
+                {isLoading && <Loading key="loading" />}
+            </AnimatePresence>
+
+            {!isLoading && (
+                <>
+                    <Navbar />
+                    <CustomCursor />
+                    <Hero />
+                    <About />
+                    <Skills />
+                    <Projects />
+                    <Experience />
+                    <Testimonials />
+                    <Services />
+                    <Contact />
+                    <Footer />
+                </>
+            )}
+        </div>
+    );
+}
+
+export default App;
