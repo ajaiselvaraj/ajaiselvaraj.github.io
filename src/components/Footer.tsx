@@ -13,10 +13,6 @@ const Footer = () => {
                         Ajai
                         <span className="text-pink-500">/&gt;</span>
                     </h2>
-                    <p className="text-gray-400 text-sm max-w-sm mx-auto">
-                        Built with React, TypeScript, Tailwind CSS, and Framer Motion.
-                        Deployed on Vercel.
-                    </p>
                 </div>
 
                 <div className="flex justify-center space-x-6 mb-8 text-gray-500 text-sm">
@@ -27,7 +23,7 @@ const Footer = () => {
                 </div>
 
                 <p className="text-gray-600 text-xs">
-                    © {new Date().getFullYear()} Ajai SP. All rights reserved.
+                    © {new Date().getFullYear()} Ajai Selvaraj. All rights reserved.
                 </p>
             </div>
         </footer>
