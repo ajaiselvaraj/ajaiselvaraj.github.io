@@ -1,5 +1,4 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Briefcase, Calendar, Award } from 'lucide-react';
 
 const experiences = [
@@ -38,11 +37,11 @@ const experiences = [
 ];
 
 const Experience = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({ target: containerRef });
+    // const containerRef = useRef(null);
+    // const { scrollYProgress } = useScroll({ target: containerRef });
 
     return (
-        <section id="experience" className="py-20 md:py-32 bg-dark relative overflow-hidden">
+        <section id="experience" className="py-20 md:py-32 bg-white dark:bg-dark relative overflow-hidden">
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -50,7 +49,7 @@ const Experience = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-500 mb-4">
+                    <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-pink-500 dark:from-indigo-400 dark:to-pink-500 mb-4">
                         Experience & Achievements
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full"></div>
@@ -69,11 +68,11 @@ const Experience = () => {
                             className={`relative flex items-center mb-12 md:justify-between ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
                         >
                             {/* Dot */}
-                            <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-dark border-2 border-indigo-500 rounded-full z-10 shadow-[0_0_10px_rgba(99,102,241,0.5)]"></div>
+                            <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-dark border-2 border-indigo-500 rounded-full z-10 shadow-[0_0_10px_rgba(99,102,241,0.5)]"></div>
 
                             {/* Content Card */}
                             <div className="ml-16 md:ml-0 md:w-[45%]">
-                                <div className="group relative bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all hover:border-indigo-500/30">
+                                <div className="group relative bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all hover:border-indigo-500/30 shadow-lg dark:shadow-none">
                                     <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-xl opacity-0 group-hover:opacity-20 blur transition duration-500"></div>
                                     <div className="relative">
                                         <div className="flex items-center gap-2 mb-2 text-indigo-400">
@@ -82,16 +81,16 @@ const Experience = () => {
                                             {exp.type === 'certification' && <Award size={18} />}
                                             <span className="text-xs font-mono uppercase tracking-wider">{exp.type}</span>
                                         </div>
-                                        <h3 className="text-xl font-bold text-white mb-1 group-hover:text-indigo-400 transition-colors">{exp.role}</h3>
+                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-indigo-400 transition-colors">{exp.role}</h3>
                                         <div className="flex items-center text-sm text-gray-400 mb-4 gap-2">
-                                            <span className="font-semibold text-gray-300">{exp.company}</span>
+                                            <span className="font-semibold text-gray-600 dark:text-gray-300">{exp.company}</span>
                                             <span>•</span>
                                             <div className="flex items-center">
                                                 <Calendar size={14} className="mr-1" />
                                                 {exp.date}
                                             </div>
                                         </div>
-                                        <p className="text-gray-400 text-sm leading-relaxed">{exp.description}</p>
+                                        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{exp.description}</p>
                                     </div>
                                 </div>
                             </div>

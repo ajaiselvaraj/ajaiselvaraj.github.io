@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+
 import { motion } from 'framer-motion';
 import { Code, Monitor, Video, PenTool } from 'lucide-react';
 
@@ -35,13 +35,13 @@ const services = [
 
 const Services = () => {
     return (
-        <section id="services" className="py-20 md:py-32 bg-dark text-white relative">
+        <section id="services" className="py-20 md:py-32 bg-white dark:bg-dark text-gray-900 dark:text-white relative">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-500 mb-4">
                         Services
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         Providing top-notch digital solutions tailored to your needs.
                     </p>
                 </div>
@@ -54,21 +54,21 @@ const Services = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: service.delay, duration: 0.5 }}
                             whileHover={{ y: -10 }}
-                            className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors group relative overflow-hidden"
+                            className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 p-8 rounded-2xl hover:bg-gray-50 dark:hover:bg-white/10 transition-colors group relative overflow-hidden shadow-lg dark:shadow-none"
                         >
                             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-500/10 to-transparent rounded-bl-full" />
 
-                            <div className="mb-6 text-indigo-400 group-hover:text-pink-500 transition-colors">
+                            <div className="mb-6 text-indigo-600 dark:text-indigo-400 group-hover:text-pink-500 transition-colors">
                                 {service.icon}
                             </div>
 
                             <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                            <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                            <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">
                                 {service.description}
                             </p>
 
                             <div className="flex items-center justify-between mt-auto">
-                                <span className="text-xs font-mono text-indigo-300 bg-indigo-500/10 px-2 py-1 rounded">
+                                <span className="text-xs font-mono text-indigo-600 dark:text-indigo-300 bg-indigo-500/10 px-2 py-1 rounded">
                                     {service.price}
                                 </span>
                             </div>

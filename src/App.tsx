@@ -15,6 +15,7 @@ import Lenis from '@studio-freight/lenis';
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
+    const [isDark, setIsDark] = useState(true);
 
     useEffect(() => {
         const lenis = new Lenis({
@@ -35,6 +36,18 @@ function App() {
 
         requestAnimationFrame(raf);
 
+        // Check local storage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+            setIsDark(true);
+            document.documentElement.classList.add('dark');
+        } else {
+            setIsDark(false);
+            document.documentElement.classList.remove('dark');
+        }
+
         // Simulate loading time
         const timer = setTimeout(() => {
             setIsLoading(false);
@@ -46,17 +59,29 @@ function App() {
         }
     }, []);
 
+    const toggleTheme = () => {
+        const newTheme = !isDark;
+        setIsDark(newTheme);
+        if (newTheme) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    };
+
     return (
-        <div className="bg-dark text-white font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+        <div className="bg-white dark:bg-dark text-gray-900 dark:text-white font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden min-h-screen">
             <AnimatePresence mode='wait'>
                 {isLoading && <Loading key="loading" />}
             </AnimatePresence>
 
             {!isLoading && (
                 <>
-                    <Navbar />
+                    <Navbar isDark={isDark} toggleTheme={toggleTheme} />
                     <CustomCursor />
-                    <Hero />
+                    <Hero isDark={isDark} />
                     <About />
                     <Skills />
                     <Projects />

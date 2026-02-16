@@ -20,12 +20,12 @@ const Skills = () => {
     const x = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
     return (
-        <section id="skills" className="py-20 md:py-32 bg-dark relative" ref={containerRef}>
+        <section id="skills" className="py-20 md:py-32 bg-white dark:bg-dark relative" ref={containerRef}>
             <div className="container mx-auto px-6 mb-16 relative z-10">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-500 mb-12 text-center"
+                    className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-500 dark:from-white dark:to-gray-500 mb-12 text-center"
                 >
                     My Tech Stack
                 </motion.h2>
@@ -38,9 +38,9 @@ const Skills = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
                             whileHover={{ scale: 1.05 }}
-                            className="p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl relative overflow-hidden group"
+                            className="p-6 bg-white dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-xl relative overflow-hidden group shadow-lg dark:shadow-none"
                         >
-                            <h3 className="text-xl font-bold text-white mb-4 group-hover:text-indigo-400 transition-colors">
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-indigo-400 transition-colors">
                                 {skill.name}
                             </h3>
                             {/* Progress Bar */}
@@ -64,7 +64,7 @@ const Skills = () => {
             {/* Floating Background Text */}
             <motion.div
                 style={{ x }}
-                className="absolute top-1/2 left-0 w-full text-[120px] font-black text-white/5 whitespace-nowrap pointer-events-none select-none overflow-hidden"
+                className="absolute top-1/2 left-0 w-full text-[120px] font-black text-black/5 dark:text-white/5 whitespace-nowrap pointer-events-none select-none overflow-hidden"
             >
                 DEVELOP • DESIGN • ANIMATE • LEARN • CREATE
             </motion.div>

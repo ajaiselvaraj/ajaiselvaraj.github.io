@@ -1,10 +1,9 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+
 
 const Footer = () => {
     return (
-        <footer className="bg-dark text-white py-12 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        <footer className="bg-white dark:bg-dark text-gray-900 dark:text-white py-12 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-200 dark:via-white/20 to-transparent"></div>
             <div className="container mx-auto px-6 text-center">
 
                 <div className="flex flex-col items-center justify-center mb-8">
@@ -16,10 +15,10 @@ const Footer = () => {
                 </div>
 
                 <div className="flex justify-center space-x-6 mb-8 text-gray-500 text-sm">
-                    <a href="#" className="hover:text-white transition-colors">Home</a>
-                    <a href="#about" className="hover:text-white transition-colors">About</a>
-                    <a href="#projects" className="hover:text-white transition-colors">Projects</a>
-                    <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+                    <a href="#" className="hover:text-black dark:hover:text-white transition-colors">Home</a>
+                    <a href="#about" className="hover:text-black dark:hover:text-white transition-colors">About</a>
+                    <a href="#projects" className="hover:text-black dark:hover:text-white transition-colors">Projects</a>
+                    <a href="#contact" className="hover:text-black dark:hover:text-white transition-colors">Contact</a>
                 </div>
 
                 <p className="text-gray-600 text-xs">

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+
 import { motion } from 'framer-motion';
 
 const Loading = () => {
@@ -7,7 +7,7 @@ const Loading = () => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-[10000] bg-dark flex flex-col items-center justify-center pointer-events-none"
+            className="fixed inset-0 z-[10000] bg-white dark:bg-dark flex flex-col items-center justify-center pointer-events-none"
         >
             <div className="relative flex items-center justify-center">
                 {/* Outer Ring */}
@@ -24,7 +24,7 @@ const Loading = () => {
                 />
 
                 {/* Initials */}
-                <span className="absolute text-xl font-bold font-mono text-white tracking-widest">AS</span>
+                <span className="absolute text-xl font-bold font-mono text-gray-900 dark:text-white tracking-widest">AS</span>
             </div>
 
             <motion.p

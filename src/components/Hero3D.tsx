@@ -1,8 +1,13 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { MeshDistortMaterial, Sphere } from '@react-three/drei';
+import * as THREE from 'three';
 
-export const Hero3D = () => {
+interface Hero3DProps {
+    isDark: boolean;
+}
+
+export const Hero3D = ({ isDark }: Hero3DProps) => {
     const sphereRef = useRef<THREE.Mesh>(null!);
 
     useFrame((state) => {
@@ -14,7 +19,7 @@ export const Hero3D = () => {
     return (
         <Sphere ref={sphereRef} args={[1, 100, 200]} scale={2.5}>
             <MeshDistortMaterial
-                color="#4f46e5"
+                color={isDark ? "#4f46e5" : "#6366f1"}
                 transparent
                 opacity={0.8}
                 attach="material"
