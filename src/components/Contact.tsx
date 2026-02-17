@@ -45,8 +45,8 @@ const Contact = () => {
         try {
             // Replace these with your actual EmailJS service, template, and public key
             await emailjs.send(
-                'YOUR_SERVICE_ID', // TODO: Replace with your Service ID
-                'YOUR_TEMPLATE_ID', // TODO: Replace with your Template ID
+                'service_jjmvcbq', // TODO: Replace with your Service ID
+                'template_ffnyhok', // TODO: Replace with your Template ID
                 {
                     from_name: formData.name,
                     to_name: "Ajai",
@@ -54,7 +54,7 @@ const Contact = () => {
                     message: formData.message,
                     reply_to: formData.email,
                 },
-                'YOUR_PUBLIC_KEY' // TODO: Replace with your Public Key
+                'Ix_VOzmLIMam7zMYk' // TODO: Replace with your Public Key
             );
 
             setStatus({ type: 'success', message: 'Message sent successfully!' });
