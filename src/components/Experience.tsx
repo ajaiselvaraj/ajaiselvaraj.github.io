@@ -3,37 +3,22 @@ import { Briefcase, Calendar, Award } from 'lucide-react';
 
 const experiences = [
     {
+        id: 0,
+        role: "Winner - Smart India Hackathon 2025",
+        company: "Problem ID: SIH25191",
+        date: "Dec 2025",
+        description: "Developed an AI/ML-based Digital Twin for EHV 400/220 kV substations enabling predictive maintenance, real-time monitoring, and fault analysis.",
+        type: "achievement"
+    },
+    {
         id: 1,
         role: "Full Stack Developer",
         company: "Freelance",
         date: "2024 - Present",
         description: "Developed and deployed custom web applications for diverse clients using React, Node.js, and Supabase. Improved site performance by 40% on average.",
         type: "experience"
-    },
-    {
-        id: 2,
-        role: "Hackathon Winner",
-        company: "TechNova 2024",
-        date: "Oct 2024",
-        description: "Secured 1st place for building an AI-powered accessibility tool for visually impaired users.",
-        type: "achievement"
-    },
-    {
-        id: 3,
-        role: "Frontend Intern",
-        company: "StartUp Inc.",
-        date: "Jan 2023 - Dec 2023",
-        description: "Collaborated with the design team to implement pixel-perfect UI components using Tailwind CSS and React.",
-        type: "experience"
-    },
-    {
-        id: 4,
-        role: "Certified React Developer",
-        company: "Meta Coursera",
-        date: "Aug 2023",
-        description: "Completed advanced React certification covering hooks, context API, and performance optimization.",
-        type: "certification"
     }
+    
 ];
 
 const Experience = () => {

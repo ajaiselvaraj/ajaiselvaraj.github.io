@@ -4,6 +4,16 @@ import { X, ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
+        title: 'AI/ML Digital Twin for EHV Substations',
+        category: 'AI/ML',
+        tags: ['React', 'TypeScript', 'Python', 'FastAPI', 'Node.js', 'PostgreSQL'],
+        description: 'An AI-driven Digital Twin for predictive maintenance and real-time monitoring of electrical substations.',
+        longDescription: 'Oceanberg | Smart India Hackathon Winner (SIH25191). A comprehensive AI/ML-based system enabling real-time monitoring of voltage, current, and temperature. Features predictive maintenance for critical equipment, anomaly detection, and an interactive 3D dashboard for fault analysis.',
+        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop', // Placeholder for AI/Tech
+        link: '#',
+        github: '#'
+    },
+    {
         title: 'AAZHI Smart Kiosk',
         category: 'Web',
         tags: ['React', 'Node.js', 'PostgreSQL'],
@@ -45,7 +55,7 @@ const projects = [
     }
 ];
 
-const categories = ['All', 'Web', 'Design', 'Video'];
+const categories = ['All', 'Web', 'AI/ML', 'Design', 'Video'];
 
 const Projects = () => {
     const [filter, setFilter] = useState('All');
