@@ -38,9 +38,9 @@ function App() {
 
         // Check local storage or system preference
         const savedTheme = localStorage.getItem('theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+
+        if (savedTheme === 'dark' || !savedTheme) {
             setIsDark(true);
             document.documentElement.classList.add('dark');
         } else {
