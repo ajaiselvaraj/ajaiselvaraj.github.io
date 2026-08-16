@@ -1,4 +1,4 @@
-# Ajai SP - Developer Portfolio
+# Ajai Selvaraj - Developer Portfolio
 
 An ultra-professional, futuristic developer portfolio website built with modern web technologies.
 
