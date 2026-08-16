@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter } from 'lucide-react';
 
 const Contact = () => {
     const formRef = useRef<HTMLFormElement>(null);
@@ -112,11 +112,17 @@ const Contact = () => {
                     <div className="pt-8">
                         <h4 className="text-sm uppercase tracking-widest text-gray-500 mb-4">Socials</h4>
                         <div className="flex space-x-4">
-                            <a href="https://github.com/ajaiselvaraj" className="p-3 bg-white dark:bg-white/5 rounded-full hover:bg-indigo-600 transition-all text-gray-900 dark:text-white hover:text-white hover:scale-110 shadow-sm dark:shadow-none border border-gray-200 dark:border-transparent">
+                            <a href="https://github.com/ajaiselvaraj" target="_blank" rel="noopener noreferrer" className="p-3 bg-white dark:bg-white/5 rounded-full hover:bg-indigo-600 transition-all text-gray-900 dark:text-white hover:text-white hover:scale-110 shadow-sm dark:shadow-none border border-gray-200 dark:border-transparent">
                                 <Github size={24} />
                             </a>
-                            <a href="https://www.linkedin.com/in/ajaiselvaraj-" className="p-3 bg-white dark:bg-white/5 rounded-full hover:bg-blue-600 transition-all text-gray-900 dark:text-white hover:text-white hover:scale-110 shadow-sm dark:shadow-none border border-gray-200 dark:border-transparent">
+                            <a href="https://www.linkedin.com/in/ajaiselvaraj-/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white dark:bg-white/5 rounded-full hover:bg-blue-600 transition-all text-gray-900 dark:text-white hover:text-white hover:scale-110 shadow-sm dark:shadow-none border border-gray-200 dark:border-transparent">
                                 <Linkedin size={24} />
+                            </a>
+                            <a href="https://www.instagram.com/ajaiselvaraj_/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white dark:bg-white/5 rounded-full hover:bg-pink-600 transition-all text-gray-900 dark:text-white hover:text-white hover:scale-110 shadow-sm dark:shadow-none border border-gray-200 dark:border-transparent">
+                                <Instagram size={24} />
+                            </a>
+                            <a href="https://x.com/ajaiselvaraj_/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white dark:bg-white/5 rounded-full hover:bg-black dark:hover:bg-neutral-800 transition-all text-gray-900 dark:text-white hover:text-white hover:scale-110 shadow-sm dark:shadow-none border border-gray-200 dark:border-transparent">
+                                <Twitter size={24} />
                             </a>
                         </div>
                     </div>

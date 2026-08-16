@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, Instagram, Sun, Moon } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Instagram, Sun, Moon, Twitter } from 'lucide-react';
 import { cn } from '../utils/cn';
 import MagneticButton from './MagneticButton';
 
@@ -123,9 +123,10 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
                         </button>
                         <div className="w-px h-6 bg-gray-200 dark:bg-white/10 mx-2"></div>
                         <a href="https://github.com/ajaiselvaraj" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Github size={20} /></a>
-                        <a href="https://linkedin.com/in/ajaiselvaraj" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Linkedin size={20} /></a>
-                        <a href="mailto:contact@ajaisp.com" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Mail size={20} /></a>
-                        <a href="https://instagram.com/ajaiselvaraj" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Instagram size={20} /></a>
+                        <a href="https://www.linkedin.com/in/ajaiselvaraj-/" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Linkedin size={20} /></a>
+                        <a href="mailto:ajaiselvaraj22@gmail.com" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Mail size={20} /></a>
+                        <a href="https://www.instagram.com/ajaiselvaraj_/" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Instagram size={20} /></a>
+                        <a href="https://x.com/ajaiselvaraj_/" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Twitter size={20} /></a>
                     </div>
                 </motion.div>
             )}

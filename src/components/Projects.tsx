@@ -4,58 +4,49 @@ import { X, ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
+        title: 'AI Jewellery POS — Prema Jewellery',
+        category: 'Web',
+        tags: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
+        description: 'An AI-powered jewellery billing and inventory management platform developed exclusively for Prema Jewellery.',
+        longDescription: 'Private / Proprietary Project. A custom ERP billing and inventory management platform developed exclusively for Prema Jewellery. Integrates automated stock tracking, billing pipelines, and visual sales analytics dashboards. Codebase and direct deployment remain private under non-disclosure.',
+        image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=600&auto=format&fit=crop',
+        isPrivate: true,
+        link: 'Private Project',
+        github: 'Private Project'
+    },
+    {
         title: 'AI/ML Digital Twin for EHV Substations',
         category: 'AI/ML',
-        tags: ['React', 'TypeScript', 'Python', 'FastAPI', 'Node.js', 'PostgreSQL'],
+        tags: ['React', 'TypeScript', 'Python', 'FastAPI', 'Node.js', 'PostgreSQL', 'Firebase'],
         description: 'An AI-driven Digital Twin for predictive maintenance and real-time monitoring of electrical substations.',
-        longDescription: 'Oceanberg | Smart India Hackathon Winner (SIH25191). A comprehensive AI/ML-based system enabling real-time monitoring of voltage, current, and temperature. Features predictive maintenance for critical equipment, anomaly detection, and an interactive 3D dashboard for fault analysis.',
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop', // Placeholder for AI/Tech
-        link: '#',
-        github: '#'
+        longDescription: 'Smart India Hackathon Winner (SIH25191) | Team Oceanberg. A comprehensive AI/ML-based system enabling real-time monitoring of voltage, current, and temperature. Features predictive maintenance for critical equipment, anomaly detection, and an interactive 3D dashboard for fault analysis.',
+        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop',
+        link: 'https://ajaiselvaraj.me/',
+        github: 'https://github.com/ajaiselvaraj'
     },
     {
-        title: 'AAZHI Smart Kiosk',
+        title: 'AAZHI — AI-Powered Smart Urban Virtual Interactive Digital Helpdesk Assistant',
         category: 'Web',
-        tags: ['React', 'Node.js', 'PostgreSQL'],
+        tags: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
         description: 'A civic service kiosk interface for optimized public service delivery.',
-        longDescription: 'A comprehensive kiosk solution for smart cities, enabling citizens to access government services, pay bills, and lodge grievances. Built with a focus on accessibility and ease of use.',
-        image: 'https://images.unsplash.com/photo-1555677241-c7d6b9aadc5f?q=80&w=600&auto=format&fit=crop', // Placeholder
-        link: '#',
-        github: '#'
+        longDescription: 'A comprehensive kiosk solution for smart cities, enabling citizens to access government services, pay bills, and lodge grievances. Built with a focus on accessibility and use.',
+        image: 'https://images.unsplash.com/photo-1555677241-c7d6b9aadc5f?q=80&w=600&auto=format&fit=crop',
+        link: 'https://github.com/ajaiselvaraj/AAZHI',
+        github: 'https://github.com/ajaiselvaraj/AAZHI'
     },
     {
-        title: 'LMS UI',
-        category: 'Design',
-        tags: ['HTML', 'CSS', 'Figma'],
-        description: 'A modern Learning Management System interface with intuitive navigation.',
-        longDescription: 'Redesigned the user experience for a leading LMS platform. Focus on clean typography, consistent color theory, and an intuitive course dashboard.',
-        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop',
-        link: '#',
-        github: '#'
-    },
-    {
-        title: 'Travel Planning App',
-        category: 'Web',
-        tags: ['React Native', 'Firebase'],
-        description: 'An AI-powered travel itinerary planner for seamless trips.',
-        longDescription: 'Mobile application that uses AI to generate personalized travel itineraries based on user preferences and budget. Features offline maps and real-time collaboration.',
-        image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=600&auto=format&fit=crop',
-        link: '#',
-        github: '#'
-    },
-    {
-        title: 'Cinematic Showreel',
-        category: 'Video',
-        tags: ['Premiere Pro', 'After Effects'],
-        description: 'A compilation of high-energy edits and motion graphics work.',
-        longDescription: 'A 2-minute showreel demonstrating expertise in video editing, color grading, and motion graphics. Includes cuts from commercial projects and creative shorts.',
-        image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=600&auto=format&fit=crop',
-        link: '#',
-        github: '#'
+        title: 'Vikshana — AI Investigation & Intelligence Platform',
+        category: 'AI/ML',
+        tags: ['React', 'Node.js', 'Zoho Catalyst', 'AI Agents', 'LLM Integration', 'Python', 'Data Analysis'],
+        description: 'An AI-powered investigation and intelligence platform developed for Datathon 2026, designed to support intelligent investigation workflows and evidence-driven analysis using AI.',
+        longDescription: 'Datathon 2026 • Hack2Skill • Zoho Catalyst. Built to assist law enforcement agencies with sociological crime insights, district-level migration analytics, and criminology-based offender profiling. Integrates missing evidence auditing and automated court-ready PDF briefing generation.',
+        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop',
+        link: 'https://hack2skill.com/event/datathon2026',
+        github: 'https://hack2skill.com/event/datathon2026'
     }
 ];
 
-const categories = ['All', 'Web', 'AI/ML', 'Design', 'Video'];
+const categories = ['All', 'Web', 'AI/ML'];
 
 const Projects = () => {
     const [filter, setFilter] = useState('All');
@@ -185,20 +176,32 @@ const Projects = () => {
                                     </div>
 
                                     <div className="flex gap-4">
-                                        <a
-                                            href={selectedProject.link}
-                                            className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
-                                        >
-                                            <ExternalLink size={18} />
-                                            Live Demo
-                                        </a>
-                                        <a
-                                            href={selectedProject.github}
-                                            className="flex-1 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
-                                        >
-                                            <Github size={18} />
-                                            Source Code
-                                        </a>
+                                        {selectedProject.isPrivate ? (
+                                            <div className="w-full bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 py-3 rounded-lg font-medium text-center border border-gray-200 dark:border-white/10">
+                                                Private Project / Proprietary Source
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <a
+                                                    href={selectedProject.link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
+                                                >
+                                                    <ExternalLink size={18} />
+                                                    Live Demo
+                                                </a>
+                                                <a
+                                                    href={selectedProject.github}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex-1 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
+                                                >
+                                                    <Github size={18} />
+                                                    Source Code
+                                                </a>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </motion.div>

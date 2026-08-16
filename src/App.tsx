@@ -73,25 +73,21 @@ function App() {
 
     return (
         <div className="bg-white dark:bg-dark text-gray-900 dark:text-white font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden min-h-screen">
-            <AnimatePresence mode='wait'>
+            <AnimatePresence>
                 {isLoading && <Loading key="loading" />}
             </AnimatePresence>
 
-            {!isLoading && (
-                <>
-                    <Navbar isDark={isDark} toggleTheme={toggleTheme} />
-                    <CustomCursor />
-                    <Hero isDark={isDark} />
-                    <About />
-                    <Skills />
-                    <Projects />
-                    <Experience />
-                    <Testimonials />
+            <Navbar isDark={isDark} toggleTheme={toggleTheme} />
+            <CustomCursor />
+            <Hero isDark={isDark} isLoading={isLoading} />
+            <About />
+            <Skills />
+            <Projects />
+            <Experience />
+            <Testimonials />
 
-                    <Contact />
-                    <Footer />
-                </>
-            )}
+            <Contact />
+            <Footer />
         </div>
     );
 }

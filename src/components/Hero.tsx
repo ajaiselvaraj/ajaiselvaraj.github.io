@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { Hero3D } from './Hero3D';
-import { ArrowDown, Code, PenTool, Video } from 'lucide-react';
+import { ArrowDown, Code, Brain, Award, Laptop } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 
 const textVariants = {
@@ -12,10 +12,12 @@ const textVariants = {
 
 interface HeroProps {
     isDark: boolean;
+    isLoading?: boolean;
 }
 
-const Hero = ({ isDark }: HeroProps) => {
-    const roles = ["Developer", "Designer", "Video Editor"];
+const roles = ["AI/ML Developer", "AI & Data Science Student", "Software Developer", "SIH 2025 Winner"];
+
+const Hero = ({ isDark, isLoading = false }: HeroProps) => {
     const [roleIndex, setRoleIndex] = useState(0);
 
     useEffect(() => {
@@ -41,7 +43,7 @@ const Hero = ({ isDark }: HeroProps) => {
                 <motion.div
                     variants={textVariants}
                     initial="hidden"
-                    animate="visible"
+                    animate={isLoading ? "hidden" : "visible"}
                     className="text-left space-y-6"
                 >
                     <h2 className="text-xl md:text-2xl font-mono text-indigo-400">Hi, I'm</h2>
@@ -58,9 +60,10 @@ const Hero = ({ isDark }: HeroProps) => {
                             transition={{ duration: 0.5 }}
                             className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-indigo-400 to-pink-500 bg-clip-text text-transparent flex items-center gap-2"
                         >
-                            {roleIndex === 0 && <Code />}
-                            {roleIndex === 1 && <PenTool />}
-                            {roleIndex === 2 && <Video />}
+                            {roleIndex === 0 && <Brain size={28} />}
+                            {roleIndex === 1 && <Laptop size={28} />}
+                            {roleIndex === 2 && <Code size={28} />}
+                            {roleIndex === 3 && <Award size={28} />}
                             {roles[roleIndex]}
                         </motion.div>
                     </div>

@@ -22,12 +22,25 @@ const About = () => {
                     transition={{ duration: 0.8 }}
                     className="relative"
                 >
-                    <div className="w-full h-[400px] bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl border border-gray-200 dark:border-white/10 flex items-center justify-center p-8 backdrop-blur-sm bg-white/50 dark:bg-transparent">
-                        <div className="text-center">
+                    <div className="w-full h-[400px] bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl border border-gray-200 dark:border-white/10 flex items-center justify-center overflow-hidden backdrop-blur-sm bg-white/50 dark:bg-transparent group">
+                        <img
+                            src="/ajai-selvaraj-profile.jpg"
+                            alt="Ajai Selvaraj"
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                const fallbackNode = e.currentTarget.parentElement?.querySelector('.fallback-profile-content');
+                                if (fallbackNode) {
+                                    fallbackNode.classList.remove('hidden');
+                                    fallbackNode.classList.add('flex');
+                                }
+                            }}
+                        />
+                        <div className="fallback-profile-content hidden absolute inset-0 flex-col items-center justify-center p-8 text-center">
                             <h3 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-500 mb-4">
                                 AJAI SELVARAJ
                             </h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-lg">Full Stack Developer &<br />Creative Designer</p>
+                            <p className="text-gray-600 dark:text-gray-400 text-lg">AI & Data Science Student &<br />AI/ML Developer</p>
                         </div>
                     </div>
                     {/* Decorative element */}
@@ -45,12 +58,12 @@ const About = () => {
                     className="space-y-8"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Designing the Future,<br /> <span className="text-indigo-500">One Pixel at a Time.</span>
+                        Designing the Future of AI,<br /> <span className="text-indigo-500">One Model at a Time.</span>
                     </h2>
 
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
-                        I'm a passionate developer with a knack for creating visually stunning and highly functional web applications.
-                        My journey involves mastering the art of React, TypeScript, and 3D web technologies to build interfaces that don't just work, but feel alive.
+                        I am an AI & Data Science student and an AI/ML and Software Developer with a track record of building predictive pipelines, digital twin systems, and scalable web apps.
+                        As a Smart India Hackathon (SIH) 2025 Winner, I combine deep technical reasoning (React, TypeScript, Python, FastAPI) with creative execution to build experiences that feel alive.
                     </p>
 
                     <div className="grid grid-cols-3 gap-6 pt-6">

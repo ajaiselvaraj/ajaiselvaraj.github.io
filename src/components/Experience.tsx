@@ -4,21 +4,28 @@ import { Briefcase, Calendar, Award } from 'lucide-react';
 const experiences = [
     {
         id: 0,
-        role: "Winner - Smart India Hackathon 2025",
-        company: "Problem ID: SIH25191",
+        role: "Winner - Smart India Hackathon (SIH) 2025",
+        company: "Team Oceanberg | Problem ID: SIH25191",
         date: "Dec 2025",
-        description: "Developed an AI/ML-based Digital Twin for EHV 400/220 kV substations enabling predictive maintenance, real-time monitoring, and fault analysis.",
+        description: "Led development of an AI/ML-based Digital Twin for EHV 400/220 kV substations enabling predictive maintenance, real-time monitoring, and fault analysis.",
         type: "achievement"
     },
     {
         id: 1,
+        role: "Runner-up - SUVIDHA 2026",
+        company: "National Level Hackathon",
+        date: "2026",
+        description: "Developed innovative software solutions for civic utility workflows, enabling streamlined governance and public service accessibility.",
+        type: "achievement"
+    },
+    {
+        id: 2,
         role: "Full Stack Developer",
         company: "Freelance",
         date: "2024 - Present",
         description: "Developed and deployed custom web applications for diverse clients using React, Node.js, and Supabase. Improved site performance by 40% on average.",
         type: "experience"
     }
-    
 ];
 
 const Experience = () => {

@@ -1,5 +1,7 @@
 
 
+import { Github, Linkedin, Instagram, Twitter } from 'lucide-react';
+
 const Footer = () => {
     return (
         <footer className="bg-white dark:bg-dark text-gray-900 dark:text-white py-12 relative overflow-hidden">
@@ -7,11 +9,27 @@ const Footer = () => {
             <div className="container mx-auto px-6 text-center">
 
                 <div className="flex flex-col items-center justify-center mb-8">
-                    <h2 className="text-2xl font-bold font-mono tracking-tighter mb-4">
+                    <div className="text-2xl font-bold font-mono tracking-tighter mb-4">
                         <span className="text-indigo-500">&lt;</span>
                         Ajai
                         <span className="text-pink-500">/&gt;</span>
-                    </h2>
+                    </div>
+                </div>
+
+                {/* Social links for SEO crawling and desktop view */}
+                <div className="flex justify-center space-x-6 mb-8 text-gray-500">
+                    <a href="https://github.com/ajaiselvaraj" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 transition-colors">
+                        <Github size={20} />
+                    </a>
+                    <a href="https://www.linkedin.com/in/ajaiselvaraj-/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 transition-colors">
+                        <Linkedin size={20} />
+                    </a>
+                    <a href="https://www.instagram.com/ajaiselvaraj_/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 transition-colors">
+                        <Instagram size={20} />
+                    </a>
+                    <a href="https://x.com/ajaiselvaraj_/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 transition-colors">
+                        <Twitter size={20} />
+                    </a>
                 </div>
 
                 <div className="flex justify-center space-x-6 mb-8 text-gray-500 text-sm">
