@@ -1,112 +1,139 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { Hero3D } from './Hero3D';
-import { ArrowDown, Code, Brain, Award, Laptop } from 'lucide-react';
-import MagneticButton from './MagneticButton';
-
-const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-};
+import { ArrowDown, ArrowUpRight, Award, ShieldCheck, Sparkles, Quote } from 'lucide-react';
 
 interface HeroProps {
-    isDark: boolean;
-    isLoading?: boolean;
+  isDark?: boolean;
 }
 
-const roles = ["AI/ML Developer", "AI & Data Science Student", "Software Developer", "SIH 2025 Winner"];
+export const Hero: React.FC<HeroProps> = () => {
+  return (
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-28 pb-16 overflow-hidden bg-white dark:bg-black text-[#111111] dark:text-[#FFFFFF]"
+    >
+      {/* Background Refined Ambient Liquid Glow (Monochrome Only) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+        <div className="w-[600px] h-[600px] sm:w-[850px] sm:h-[850px] rounded-full bg-black/[0.02] dark:bg-white/[0.025] blur-[120px] transition-all" />
+      </div>
 
-const Hero = ({ isDark, isLoading = false }: HeroProps) => {
-    const [roleIndex, setRoleIndex] = useState(0);
+      <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center relative z-10 space-y-8">
+        {/* Status Pill Badge & Main Quote Badge */}
+        <div className="flex flex-col sm:flex-row items-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-subtle text-xs font-mono tracking-tight text-[#111111] dark:text-[#FFFFFF]"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#111111] dark:bg-[#FFFFFF] animate-pulse" />
+            <span>Computer Science & Business Systems Student</span>
+          </motion.div>
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setRoleIndex((prev) => (prev + 1) % roles.length);
-        }, 2000);
-        return () => clearInterval(interval);
-    }, []);
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass text-xs font-mono font-medium tracking-tight text-[#111111] dark:text-[#FFFFFF] border border-black/10 dark:border-white/10"
+          >
+            <Quote size={11} className="text-[#111111] dark:text-[#FFFFFF] opacity-70" />
+            <span>“If it doesn’t exist. Build it.”</span>
+          </motion.div>
+        </div>
 
-    return (
-        <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-dark">
-            {/* Background 3D */}
-            <div className="absolute inset-0 z-0">
-                <Canvas>
-                    <ambientLight intensity={1} />
-                    <directionalLight position={[3, 2, 1]} />
-                    <Hero3D isDark={isDark} />
-                </Canvas>
-            </div>
+        {/* Name & Primary Headline */}
+        <div className="space-y-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#777777] dark:text-[#A1A1A6]"
+          >
+            Ajai Selvaraj
+          </motion.h2>
 
-            {/* Content */}
-            <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                <motion.div
-                    variants={textVariants}
-                    initial="hidden"
-                    animate={isLoading ? "hidden" : "visible"}
-                    className="text-left space-y-6"
-                >
-                    <h2 className="text-xl md:text-2xl font-mono text-indigo-400">Hi, I'm</h2>
-                    <h1 className="text-5xl md:text-8xl font-black bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-200 dark:to-gray-500 bg-clip-text text-transparent tracking-tighter">
-                        AJAI SELVARAJ
-                    </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF] leading-[1.08]"
+          >
+            Building intelligent systems.
+            <br />
+            <span className="text-[#777777] dark:text-[#8E8E93] font-normal">
+              Creating meaningful impact.
+            </span>
+          </motion.h1>
+        </div>
 
-                    <div className="h-16 overflow-hidden">
-                        <motion.div
-                            key={roleIndex}
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -20, opacity: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-indigo-400 to-pink-500 bg-clip-text text-transparent flex items-center gap-2"
-                        >
-                            {roleIndex === 0 && <Brain size={28} />}
-                            {roleIndex === 1 && <Laptop size={28} />}
-                            {roleIndex === 2 && <Code size={28} />}
-                            {roleIndex === 3 && <Award size={28} />}
-                            {roles[roleIndex]}
-                        </motion.div>
-                    </div>
+        {/* Roles Descriptor */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="text-base sm:text-lg text-[#777777] dark:text-[#A1A1A6] max-w-2xl font-normal leading-relaxed"
+        >
+          Software Engineer & AI Systems Developer specializing in real-time digital twins, spatial AI harmonization, computer vision, and offline-first enterprise applications.
+        </motion.p>
 
-                    <p className="text-gray-600 dark:text-gray-400 max-w-lg text-lg leading-relaxed">
-                        Crafting immersive digital experiences with code, design, and motion. Specializing in React, 3D Interactives, and high-end UI/UX.
-                    </p>
+        {/* Engineering Badges */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-wrap justify-center items-center gap-2 pt-2"
+        >
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF] border border-black/5 dark:border-white/5">
+            <Award size={13} />
+            SIH 2025 Winner
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF] border border-black/5 dark:border-white/5">
+            <Sparkles size={13} />
+            SUVIDHA 2026 Runner-up
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF] border border-black/5 dark:border-white/5">
+            <ShieldCheck size={13} />
+            Production POS Deployed
+          </span>
+        </motion.div>
 
-                    <div className="flex gap-4 pt-4">
-                        <MagneticButton
-                            href="#projects"
-                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-medium transition-colors shadow-lg shadow-indigo-500/30"
-                        >
-                            View Projects
-                        </MagneticButton>
-                        <MagneticButton
-                            href="#contact"
-                            className="border border-black/20 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 text-gray-900 dark:text-white px-8 py-3 rounded-full font-medium backdrop-blur-sm transition-all"
-                        >
-                            Hire Me
-                        </MagneticButton>
-                    </div>
-                </motion.div>
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row items-center gap-3 pt-4 w-full sm:w-auto"
+        >
+          <a
+            href="#projects"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium bg-[#111111] text-white dark:bg-[#FFFFFF] dark:text-[#000000] hover:opacity-90 transition-all shadow-sm active:scale-95"
+          >
+            <span>Explore Flagship Projects</span>
+            <ArrowDown size={14} />
+          </a>
 
-                <div className="hidden md:block">
-                    {/* The 3D element is covering the whole background, but we could add another interactive element here */}
-                </div>
-            </div>
+          <a
+            href="#profile"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium liquid-glass hover:bg-black/5 dark:hover:bg-white/10 text-[#111111] dark:text-[#FFFFFF] transition-all active:scale-95"
+          >
+            <span>Technical Profile</span>
+            <ArrowUpRight size={14} />
+          </a>
+        </motion.div>
+      </div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-900/50 dark:text-white/50"
-            >
-                <ArrowDown size={32} />
-            </motion.div>
-
-            {/* Gradient Overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-dark via-transparent to-transparent pointer-events-none" />
-        </section>
-    );
+      {/* Subtle Scroll Cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[#777777] dark:text-[#A1A1A6] text-xs font-mono"
+      >
+        <span className="tracking-widest uppercase text-[10px]">Scroll</span>
+        <ArrowDown size={12} className="animate-bounce" />
+      </motion.div>
+    </section>
+  );
 };
 
 export default Hero;

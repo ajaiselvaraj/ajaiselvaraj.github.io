@@ -1,137 +1,144 @@
-import { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, Instagram, Sun, Moon, Twitter } from 'lucide-react';
-import { cn } from '../utils/cn';
-import MagneticButton from './MagneticButton';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface NavbarProps {
-    isDark: boolean;
-    toggleTheme: () => void;
+  isDark: boolean;
+  toggleTheme: () => void;
+  activeSection: string;
 }
 
-const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, activeSection }) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  const navItems = [
+    { name: 'Profile', href: '#profile' },
+    { name: 'Expertise', href: '#expertise' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Achievements', href: '#achievements' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Activity', href: '#activity' },
+    { name: 'Contact', href: '#contact' },
+  ];
 
-
-
-
-    const navLinks = [
-        { name: 'About', href: '#about' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Experience', href: '#experience' },
-        { name: 'Contact', href: '#contact' },
-    ];
-
-    return (
-        <header
-            className={cn(
-                "fixed top-0 w-full z-50 transition-all duration-300",
-                scrolled ? "bg-white/80 dark:bg-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10" : "bg-transparent"
-            )}
+  return (
+    <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-4 sm:px-6 py-4 flex justify-center">
+      <nav
+        className={`w-full max-w-5xl rounded-full transition-all duration-500 flex items-center justify-between px-5 py-2.5 sm:px-6 sm:py-3 ${
+          scrolled
+            ? 'liquid-glass shadow-float dark:shadow-float-dark border border-black/10 dark:border-white/10'
+            : 'bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/5 dark:border-white/5'
+        }`}
+      >
+        {/* Brand / Logo */}
+        <a
+          href="#"
+          className="flex items-center gap-2 text-sm font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF] group"
         >
-            <motion.div
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 origin-left"
-                style={{ scaleX }}
-            />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#111111] dark:bg-[#FFFFFF] transition-transform duration-300 group-hover:scale-125" />
+          <span className="font-mono text-xs tracking-wider uppercase">Ajai Selvaraj</span>
+        </a>
 
-            <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#" className="text-2xl font-bold font-mono tracking-tighter">
-                    <span className="text-indigo-500">&lt;</span>
-                    Ajai
-                    <span className="text-pink-500">/&gt;</span>
-                </a>
+        {/* Desktop Navigation Links */}
+        <div className="hidden md:flex items-center gap-1 text-xs font-medium">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.replace('#', '');
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`relative px-3 py-1.5 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? 'text-[#111111] dark:text-[#FFFFFF] font-semibold'
+                    : 'text-[#777777] dark:text-[#A1A1A6] hover:text-[#111111] dark:hover:text-[#FFFFFF]'
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="active-pill"
+                    className="absolute inset-0 rounded-full bg-black/5 dark:bg-white/10 -z-10"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+                {item.name}
+              </a>
+            );
+          })}
+        </div>
 
-                {/* Desktop Menu */}
-                <nav className="hidden md:flex space-x-8 items-center">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors relative group text-sm font-medium"
-                        >
-                            {link.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-500 transition-all group-hover:w-full"></span>
-                        </a>
-                    ))}
+        {/* Right Action Cluster */}
+        <div className="flex items-center gap-2">
+          {/* Glass Theme Switcher */}
+          <button
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            className="p-2 rounded-full text-[#111111] dark:text-[#FFFFFF] bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 border border-black/5 dark:border-white/10 transition-all duration-300"
+          >
+            {isDark ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
 
-                    <button
-                        onClick={toggleTheme}
-                        className="p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border border-black/5 dark:border-white/5"
-                    >
-                        {isDark ? <Sun size={20} /> : <Moon size={20} />}
-                    </button>
+          {/* Direct CTA */}
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium bg-[#111111] text-white dark:bg-[#FFFFFF] dark:text-[#000000] hover:opacity-90 transition-opacity"
+          >
+            <span>Initiate Contact</span>
+            <ArrowUpRight size={13} />
+          </a>
 
-                    <MagneticButton
-                        href="#contact"
-                        className="px-5 py-2 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/10 rounded-full text-sm font-medium transition-all backdrop-blur-sm text-gray-900 dark:text-white"
-                    >
-                        Hire Me
-                    </MagneticButton>
-                </nav>
+          {/* Mobile Menu Trigger */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile navigation menu"
+            className="md:hidden p-2 rounded-full text-[#111111] dark:text-[#FFFFFF] bg-black/5 dark:bg-white/10 border border-black/5 dark:border-white/10"
+          >
+            {mobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </div>
+      </nav>
 
-                {/* Mobile Menu Button */}
-                <button
-                    className="md:hidden text-gray-900 dark:text-white"
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
-
-            {/* Mobile Menu Overlay */}
-            {isOpen && (
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-dark/95 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 p-6 flex flex-col space-y-4 shadow-lg dark:shadow-none"
-                >
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            {link.name}
-                        </a>
-                    ))}
-                    <div className="flex space-x-4 pt-4 border-t border-gray-200 dark:border-white/10 items-center">
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border border-black/5 dark:border-white/5"
-                        >
-                            {isDark ? <Sun size={20} /> : <Moon size={20} />}
-                        </button>
-                        <div className="w-px h-6 bg-gray-200 dark:bg-white/10 mx-2"></div>
-                        <a href="https://github.com/ajaiselvaraj" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Github size={20} /></a>
-                        <a href="https://www.linkedin.com/in/ajaiselvaraj-/" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Linkedin size={20} /></a>
-                        <a href="mailto:ajaiselvaraj22@gmail.com" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Mail size={20} /></a>
-                        <a href="https://www.instagram.com/ajaiselvaraj_/" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Instagram size={20} /></a>
-                        <a href="https://x.com/ajaiselvaraj_/" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"><Twitter size={20} /></a>
-                    </div>
-                </motion.div>
-            )}
-        </header>
-    );
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed top-20 left-4 right-4 rounded-panel liquid-glass p-6 border border-black/10 dark:border-white/15 shadow-2xl flex flex-col gap-3 z-40"
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-2.5 rounded-control text-sm font-medium text-[#111111] dark:text-[#FFFFFF] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="mt-2 text-center py-2.5 rounded-full text-xs font-medium bg-[#111111] text-white dark:bg-[#FFFFFF] dark:text-[#000000]"
+            >
+              Initiate Contact
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
 };
 
 export default Navbar;
