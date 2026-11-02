@@ -50,3 +50,4 @@ export const MainQuote: React.FC = () => {
 };
 
 export default MainQuote;
+

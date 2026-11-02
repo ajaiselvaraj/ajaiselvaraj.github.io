@@ -198,88 +198,71 @@ export const flagshipProjects: CaseStudyData[] = [
   },
   {
     id: "prema-jewellery-pos",
-    title: "Prema Jewellery POS & ERP",
-    subtitle: "Offline-First Retail Management, CGST Rule 46 Tax Engine & AI HUID Verification",
-    category: "Enterprise Retail Systems",
+    title: "Prema Jewellery POS",
+    subtitle: "Retail Point of Sale & Store Billing System",
+    category: "Retail POS System",
     achievementBadge: "Active Production Deployment",
-    tags: ["Flutter", "Dart", "Drift SQLite", "Riverpod", "Supabase", "RS-232 COM", "Gemini Vision"],
-    summary: "Production-grade, offline-first jewellery showroom ERP engineered with Flutter and Drift SQLite, featuring live RS-232 weighing scale streams, dual-split GST Rule 46 compliance, and Gemini Vision HUID validation.",
+    tags: ["Flutter", "Dart", "SQLite", "Riverpod", "Hardware Integration"],
+    summary: "Production point-of-sale and showroom billing system built for Prema Jewellery, supporting seamless barcode and scale integration with fast billing operations.",
     githubUrl: "https://github.com/ajaiselvaraj",
     liveUrl: "https://ajaiselvaraj.me",
     problem:
-      "Retail jewellery showrooms in South India operate under strict tax compliance (Indian CGST Rule 46 requiring dual-split GST on bullion vs. crafting charges), need sub-milligram precision direct from physical scale hardware, and cannot tolerate cloud POS downtime during network blackouts.",
+      "Showroom operations required a responsive, dependable point-of-sale system to manage customer transactions, capture accurate weight data from connected electronic scales, and operate smoothly during busy hours without relying on internet connectivity.",
     solution:
-      "Engineered an offline-first enterprise desktop and mobile POS platform in Flutter and Dart. Powered by Drift reactive SQLite and Riverpod clean architecture, it reads serial COM streams from physical weighing scales, handles complex old gold exchange accounting, generates GST A4/thermal receipts, and validates Hallmark Unique Identifiers (HUID) via Gemini Vision.",
+      "Developed a custom POS application tailored for Prema Jewellery with an intuitive billing workflow, real-time weighing scale connectivity, local offline data persistence, and thermal receipt generation.",
     architecture: {
-      overview: "Clean Architecture separating presentation, domain use cases, local reactive Drift database, hardware drivers, and an asynchronous sync queue to Supabase.",
+      overview: "Point-of-sale billing terminal connecting local data storage to in-store hardware peripherals.",
       layers: [
         {
-          title: "Material 3 Presentation",
-          description: "High-contrast billing terminal with touch-optimized numpads, stone breakdown tables, and customer lookup.",
-          tech: "Flutter 3.32+, Dart 3.8+, Riverpod 2.6+",
+          title: "POS Billing Terminal",
+          description: "Clean, touch-friendly checkout interface designed for showroom staff.",
+          tech: "Flutter, Dart, Riverpod",
         },
         {
-          title: "Domain & Tax Rules",
-          description: "CGST Rule 46 dual-tax calculator (3% metal / 5% making charges), old gold fine weight ledger, and loyalty math.",
-          tech: "Pure Dart Domain Services, FP principles",
+          title: "Billing & Invoicing",
+          description: "Automated price calculation, itemized bills, and thermal receipt output.",
+          tech: "POS Billing Module",
         },
         {
           title: "Local Database & Hardware",
-          description: "Offline-first transactional persistence, direct RS-232 COM scale polling, ESC/POS thermal printing.",
-          tech: "Drift SQLite, serial_port_win32, pdf & printing",
-        },
-        {
-          title: "Cloud Sync & AI Vision",
-          description: "Conflict-free sync queue ledger replicating to Supabase; Gemini Vision for Hallmark HUID OCR extraction.",
-          tech: "Supabase PostgreSQL, Gemini Vision API, GoldAPI.io",
+          description: "Local data persistence and digital weighing scale COM connectivity for instant weight capture.",
+          tech: "SQLite, Serial COM Integration",
         },
       ],
-      asciiFlow: `[Physical COM Scale] ──> [RS-232 Driver] ──> [Riverpod State Manager]
-                                                        │
-                                                        ▼
-                                             [Drift Local SQLite] ◄──> [Offline Transaction Log]
-                                                        │
-                                                        ▼
-                                            [Sync Queue Worker] ───> [Supabase PostgreSQL Cloud]
-                                                        │
-                                                        ▼
-                                       [ESC/POS Thermal & A4 Invoices]`,
+      asciiFlow: `[Electronic Scale] ───> [POS Terminal] ───> [Local Database] ───> [Receipt Printer]`,
     },
     techStackMatrix: [
-      { category: "Client Framework", items: ["Flutter 3.32+", "Dart 3.8+", "Material 3", "GoRouter"] },
-      { category: "State & Data", items: ["Riverpod 2.6+", "Drift (Type-Safe SQLite)", "Supabase", "PostgreSQL"] },
-      { category: "Hardware & Output", items: ["RS-232 Serial Port COM", "ESC/POS Thermal Print", "PDF Invoice Engine"] },
-      { category: "AI & External APIs", items: ["Gemini Vision (HUID OCR)", "Claude API", "GoldAPI.io Live Rates"] },
+      { category: "Application", items: ["Flutter", "Dart", "Riverpod"] },
+      { category: "Storage", items: ["SQLite", "Local Persistence"] },
+      { category: "Peripherals", items: ["Electronic Weighing Scale", "Thermal Receipt Printer"] },
     ],
     keyFeatures: [
-      "Hardware-level RS-232 serial COM integration reading continuous weight streams with gross, tare, and net isolation.",
-      "Dual-split tax engine strictly complying with Rule 46 of the Indian CGST Act (3% bullion / 5% making charges).",
-      "Offline-first resilience via Drift SQLite ensuring zero transaction disruption during network outages.",
-      "Automated Old Gold purchase workflow computing net purity, wastage deductions, and fine-gold reconciliations.",
-      "Gemini Vision integration for instant optical verification of engraved Hallmark Unique Identification (HUID) codes.",
-      "Automated generation of GSTR-1 HSN-compliant JSON tax exports and dual-format PDF invoices (A4 & 80mm roll).",
+      "Intuitive POS billing terminal created specifically for showroom sales staff.",
+      "Direct weight capture from connected electronic weighing scales.",
+      "Instant invoice and receipt generation with thermal print support.",
+      "Reliable offline performance ensuring zero store interruptions during connectivity dips.",
     ],
     contributions: [
-      "Engineered the entire Drift SQLite transactional database schema including bills, line items, and audit journals.",
-      "Implemented the RS-232 serial communication layer with automatic parity and baud rate negotiation.",
-      "Constructed the mathematical tax calculation module conforming to statutory Indian CGST/SGST regulations.",
-      "Deployed and verified the application on physical Windows terminals and Android tablets in showroom environments.",
+      "Built the front-end billing screens and sales checkout workflow in Flutter.",
+      "Set up hardware connectivity to read values from digital weighing scales.",
+      "Implemented item calculations, receipt formatting, and local data persistence.",
+      "Deployed and tested the POS software directly in store terminals.",
     ],
     challenges: [
       {
-        challenge: "Fluctuating serial COM data streams from diverse scale brands caused erratic weight readings during fast billing.",
-        solution: "Implemented an exponential moving average (EMA) jitter filter with a 200ms debounce buffer confirming scale stability before lock-in.",
+        challenge: "Ensuring responsive real-time weight updates without input lag on the checkout terminal.",
+        solution: "Optimized scale data polling to present smooth, instantaneous weight readings at checkout.",
       },
       {
-        challenge: "Maintaining data integrity and atomic transactions across offline cash sales and subsequent cloud syncing.",
-        solution: "Architected a local sync queue ledger where each transaction receives an immutable UUID and sequence number, executing idempotent UPSERTs in Supabase upon network reconnection.",
+        challenge: "Guaranteeing that billing never halts when internet connectivity is intermittent.",
+        solution: "Stored sales data locally so all store transactions and billing proceed uninterrupted offline.",
       },
     ],
     verifiedResults: [
-      { metric: "Deployment Status", value: "Production", description: "Active in-store showroom terminals" },
-      { metric: "Tax Compliance", value: "CGST Rule 46", description: "Verified dual-split 3% metal & 5% making charges" },
-      { metric: "Data Availability", value: "100% Offline", description: "Complete billing functionality without internet access" },
-      { metric: "Scale Precision", value: "0.001g", description: "Direct RS-232 serial hardware integration" },
+      { metric: "Deployment", value: "Production", description: "In active daily store operation" },
+      { metric: "Uptime", value: "Offline Ready", description: "Full billing uninterrupted without internet" },
+      { metric: "Hardware", value: "Scale Synced", description: "Direct digital scale connection" },
+      { metric: "Invoicing", value: "Fast Checkout", description: "Rapid customer checkout and receipt printing" },
     ],
   },
   {
