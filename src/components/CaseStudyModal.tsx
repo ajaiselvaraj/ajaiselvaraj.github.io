@@ -286,3 +286,4 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
     </AnimatePresence>
   );
 };
+

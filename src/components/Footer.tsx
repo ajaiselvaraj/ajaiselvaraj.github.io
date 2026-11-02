@@ -89,7 +89,7 @@ export const Footer: React.FC = () => {
         {/* Copyright & Disclaimer */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 text-[11px] font-mono text-[#888888] dark:text-[#666666]">
           <span>
-            © {new Date().getFullYear()} Ajai Selvaraj. Strictly Monochrome Liquid Glass Architecture.
+            “If it doesn’t exist. Build it.” • © {new Date().getFullYear()} Ajai Selvaraj
           </span>
           <span>
             Verified Zero-Fabrication Technical Portfolio.

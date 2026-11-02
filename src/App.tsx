@@ -4,6 +4,7 @@ import Lenis from 'lenis';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import MainQuote from './components/MainQuote';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -163,6 +164,9 @@ function App() {
       <main>
         {/* 1. Hero Introduction */}
         <Hero isDark={isDark} />
+
+        {/* Main Signature Quote */}
+        <MainQuote />
 
         {/* 2. Professional Profile */}
         <About />

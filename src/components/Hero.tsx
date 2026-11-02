@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Award, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Award, ShieldCheck, Sparkles, Quote } from 'lucide-react';
 
 interface HeroProps {
   isDark?: boolean;
@@ -18,16 +18,28 @@ export const Hero: React.FC<HeroProps> = () => {
       </div>
 
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center relative z-10 space-y-8">
-        {/* Status Pill Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-subtle text-xs font-mono tracking-tight text-[#111111] dark:text-[#FFFFFF]"
-        >
-          <span className="w-2 h-2 rounded-full bg-[#111111] dark:bg-[#FFFFFF] animate-pulse" />
-          <span>Computer Science & Business Systems Student</span>
-        </motion.div>
+        {/* Status Pill Badge & Main Quote Badge */}
+        <div className="flex flex-col sm:flex-row items-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-subtle text-xs font-mono tracking-tight text-[#111111] dark:text-[#FFFFFF]"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#111111] dark:bg-[#FFFFFF] animate-pulse" />
+            <span>Computer Science & Business Systems Student</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass text-xs font-mono font-medium tracking-tight text-[#111111] dark:text-[#FFFFFF] border border-black/10 dark:border-white/10"
+          >
+            <Quote size={11} className="text-[#111111] dark:text-[#FFFFFF] opacity-70" />
+            <span>“If it doesn’t exist. Build it.”</span>
+          </motion.div>
+        </div>
 
         {/* Name & Primary Headline */}
         <div className="space-y-4">
