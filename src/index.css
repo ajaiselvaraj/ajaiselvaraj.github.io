@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  color-scheme: light dark;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,36 +17,119 @@
 }
 
 html {
-  background-color: #ffffff;
-  color: #111827;
+  background-color: #FFFFFF;
+  color: #111111;
+  scroll-behavior: smooth;
 }
 
 html.dark {
-  background-color: #030712;
-  color: rgba(255, 255, 255, 0.87);
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+::selection {
+  background-color: #111111;
+  color: #FFFFFF;
+}
+
+html.dark ::selection {
+  background-color: #FFFFFF;
+  color: #000000;
 }
 
 @layer utilities {
-  .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Liquid Glass Components */
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04), inset 0 1px 1px 0 rgba(255, 255, 255, 0.85);
   }
 
-  .glass-card {
-    background: rgba(17, 24, 39, 0.7);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  .dark .liquid-glass {
+    background: rgba(21, 21, 21, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
   }
 
-  .text-gradient {
-    background: linear-gradient(to right, #6366f1, #ec4899);
+  .liquid-glass-subtle {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.02), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .dark .liquid-glass-subtle {
+    background: rgba(25, 25, 25, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .liquid-glass-card {
+    background: rgba(245, 245, 247, 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .dark .liquid-glass-card {
+    background: rgba(21, 21, 21, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .liquid-glass-modal {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(36px) saturate(200%);
+    -webkit-backdrop-filter: blur(36px) saturate(200%);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.2), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  .dark .liquid-glass-modal {
+    background: rgba(18, 18, 18, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  /* Solid Fallback for environments without backdrop-filter support */
+  @supports not (backdrop-filter: blur(10px)) {
+    .liquid-glass,
+    .liquid-glass-subtle,
+    .liquid-glass-card {
+      background-color: #F5F5F7 !important;
+    }
+    .dark .liquid-glass,
+    .dark .liquid-glass-subtle,
+    .dark .liquid-glass-card {
+      background-color: #151515 !important;
+    }
+    .liquid-glass-modal {
+      background-color: #FFFFFF !important;
+    }
+    .dark .liquid-glass-modal {
+      background-color: #151515 !important;
+    }
+  }
+
+  /* Monochrome Gradient Accent Utilities */
+  .text-monochrome-gradient {
+    background: linear-gradient(180deg, #111111 0%, #555555 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .dark .text-monochrome-gradient {
+    background: linear-gradient(180deg, #FFFFFF 0%, #888888 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }
 
+/* Lenis smooth scroll */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -66,4 +149,14 @@ html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

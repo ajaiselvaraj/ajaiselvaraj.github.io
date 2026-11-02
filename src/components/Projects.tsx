@@ -1,216 +1,172 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Github } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Award, ExternalLink, Github, ArrowRight, Layers, FileText, CheckCircle2 } from 'lucide-react';
+import { flagshipProjects, CaseStudyData } from '../data/projectsData';
 
-const projects = [
-    {
-        title: 'AI Jewellery POS — Prema Jewellery',
-        category: 'Web',
-        tags: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
-        description: 'An AI-powered jewellery billing and inventory management platform developed exclusively for Prema Jewellery.',
-        longDescription: 'Private / Proprietary Project. A custom ERP billing and inventory management platform developed exclusively for Prema Jewellery. Integrates automated stock tracking, billing pipelines, and visual sales analytics dashboards. Codebase and direct deployment remain private under non-disclosure.',
-        image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=600&auto=format&fit=crop',
-        isPrivate: true,
-        link: 'Private Project',
-        github: 'Private Project'
-    },
-    {
-        title: 'AI/ML Digital Twin for EHV Substations',
-        category: 'AI/ML',
-        tags: ['React', 'TypeScript', 'Python', 'FastAPI', 'Node.js', 'PostgreSQL', 'Firebase'],
-        description: 'An AI-driven Digital Twin for predictive maintenance and real-time monitoring of electrical substations.',
-        longDescription: 'Smart India Hackathon Winner (SIH25191) | Team Oceanberg. A comprehensive AI/ML-based system enabling real-time monitoring of voltage, current, and temperature. Features predictive maintenance for critical equipment, anomaly detection, and an interactive 3D dashboard for fault analysis.',
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop',
-        link: 'https://ajaiselvaraj.me/',
-        github: 'https://github.com/ajaiselvaraj'
-    },
-    {
-        title: 'AAZHI — AI-Powered Smart Urban Virtual Interactive Digital Helpdesk Assistant',
-        category: 'Web',
-        tags: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
-        description: 'A civic service kiosk interface for optimized public service delivery.',
-        longDescription: 'A comprehensive kiosk solution for smart cities, enabling citizens to access government services, pay bills, and lodge grievances. Built with a focus on accessibility and use.',
-        image: 'https://images.unsplash.com/photo-1555677241-c7d6b9aadc5f?q=80&w=600&auto=format&fit=crop',
-        link: 'https://github.com/ajaiselvaraj/AAZHI',
-        github: 'https://github.com/ajaiselvaraj/AAZHI'
-    },
-    {
-        title: 'Vikshana — AI Investigation & Intelligence Platform',
-        category: 'AI/ML',
-        tags: ['React', 'Node.js', 'Zoho Catalyst', 'AI Agents', 'LLM Integration', 'Python', 'Data Analysis'],
-        description: 'An AI-powered investigation and intelligence platform developed for Datathon 2026, designed to support intelligent investigation workflows and evidence-driven analysis using AI.',
-        longDescription: 'Datathon 2026 • Hack2Skill • Zoho Catalyst. Built to assist law enforcement agencies with sociological crime insights, district-level migration analytics, and criminology-based offender profiling. Integrates missing evidence auditing and automated court-ready PDF briefing generation.',
-        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop',
-        link: 'https://hack2skill.com/event/datathon2026',
-        github: 'https://hack2skill.com/event/datathon2026'
-    }
-];
+interface ProjectsProps {
+  onSelectProject: (project: CaseStudyData) => void;
+}
 
-const categories = ['All', 'Web', 'AI/ML'];
+export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
+  return (
+    <section id="projects" className="py-24 sm:py-32 px-6 relative bg-light dark:bg-dark border-t border-black/5 dark:border-white/5">
+      <div className="max-w-5xl mx-auto space-y-16">
+        {/* Section Header */}
+        <div className="space-y-4">
+          <div className="text-xs font-mono tracking-widest uppercase text-[#777777] dark:text-[#A1A1A6]">
+            Section 03 // Flagship Systems
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF]">
+                Six Flagship Engineering Projects.
+              </h2>
+              <p className="text-sm sm:text-base text-[#777777] dark:text-[#A1A1A6] font-normal leading-relaxed">
+                Audited codebases across national hackathon winners, enterprise retail ERPs, aerospace edge copilots, and geospatial platforms.
+              </p>
+            </div>
 
-const Projects = () => {
-    const [filter, setFilter] = useState('All');
-    const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+            <div className="text-xs font-mono text-[#777777] dark:text-[#A1A1A6] flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#111111] dark:bg-[#FFFFFF]" />
+              <span>Click any card for full Case Study & Architecture</span>
+            </div>
+          </div>
+        </div>
 
-    const filteredProjects = projects.filter(project =>
-        filter === 'All' ? true : project.category === filter
-    );
-
-    return (
-        <section id="projects" className="py-20 bg-gray-50 dark:bg-dark-lighter relative">
-            <div className="container mx-auto px-6">
-                <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-500 mb-12 text-center">
-                    Featured Works
-                </h2>
-
-                {/* Filter Buttons */}
-                <div className="flex justify-center space-x-4 mb-12 flex-wrap gap-2">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat}
-                            onClick={() => setFilter(cat)}
-                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300
-                            ${filter === cat
-                                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/50'
-                                    : 'bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white border border-gray-200 dark:border-white/5'}
-                        `}
-                        >
-                            {cat}
-                        </button>
-                    ))}
+        {/* Project Cards Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {flagshipProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="rounded-panel liquid-glass border border-black/10 dark:border-white/10 p-7 sm:p-8 flex flex-col justify-between group hover:border-black/25 dark:hover:border-white/25 transition-all duration-300 shadow-glass-light dark:shadow-glass-dark"
+            >
+              <div className="space-y-6">
+                {/* Card Top Pill Bar */}
+                <div className="flex items-center justify-between gap-2 flex-wrap">
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#777777] dark:text-[#A1A1A6]">
+                    {project.category}
+                  </span>
+                  {project.achievementBadge && (
+                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#111111] text-white dark:bg-[#FFFFFF] dark:text-[#000000] shadow-sm">
+                      <Award size={12} />
+                      <span>{project.achievementBadge}</span>
+                    </span>
+                  )}
                 </div>
 
-                {/* Project Grid */}
-                <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <AnimatePresence>
-                        {filteredProjects.map((project) => (
-                            <motion.div
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
-                                key={project.title}
-                                className="bg-white dark:bg-dark border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden hover:border-indigo-500/50 transition-colors group cursor-pointer shadow-lg dark:shadow-none"
-                                onClick={() => setSelectedProject(project)}
-                            >
-                                <div className="h-48 overflow-hidden relative">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <span className="text-white font-medium border border-white/30 px-4 py-2 rounded-full backdrop-blur-sm">View Details</span>
-                                    </div>
-                                </div>
+                {/* Minimalist Graphic / Visual Architecture Preview Frame */}
+                <div
+                  onClick={() => onSelectProject(project)}
+                  className="w-full h-44 rounded-image bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 p-5 flex flex-col justify-between overflow-hidden relative group/canvas cursor-pointer transition-all duration-300 group-hover:border-black/15 dark:group-hover:border-white/15"
+                >
+                  <div className="flex items-center justify-between z-10">
+                    <span className="text-[11px] font-mono text-[#777777] dark:text-[#A1A1A6] uppercase tracking-wider">
+                      Architecture Blueprint
+                    </span>
+                    <span className="text-xs font-mono text-[#111111] dark:text-[#FFFFFF] opacity-0 group-hover/canvas:opacity-100 transition-opacity flex items-center gap-1">
+                      <span>View Dossier</span>
+                      <ArrowRight size={12} />
+                    </span>
+                  </div>
 
-                                <div className="p-6">
-                                    <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest mb-2 block">{project.category}</span>
-                                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-400 transition-colors">{project.title}</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">{project.description}</p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.tags.map(tag => (
-                                            <span key={tag} className="text-xs px-2 py-1 bg-gray-100 dark:bg-white/5 rounded text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-white/5">{tag}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
-
-                {/* Project Modal */}
-                <AnimatePresence>
-                    {selectedProject && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-                            onClick={() => setSelectedProject(null)}
-                        >
-                            <motion.div
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                exit={{ scale: 0.9, opacity: 0 }}
-                                className="bg-white dark:bg-dark border border-gray-200 dark:border-white/10 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <button
-                                    className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white z-10 transition-colors"
-                                    onClick={() => setSelectedProject(null)}
-                                >
-                                    <X size={20} />
-                                </button>
-
-                                <div className="h-64 sm:h-80 overflow-hidden">
-                                    <img
-                                        src={selectedProject.image}
-                                        alt={selectedProject.title}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-
-                                <div className="p-8">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div>
-                                            <span className="text-indigo-400 font-mono text-xs uppercase tracking-wider">{selectedProject.category}</span>
-                                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{selectedProject.title}</h3>
-                                        </div>
-                                    </div>
-
-                                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                                        {selectedProject.longDescription || selectedProject.description}
-                                    </p>
-
-                                    <div className="mb-8">
-                                        <h4 className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Tech Stack</h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {selectedProject.tags.map(tag => (
-                                                <span key={tag} className="text-sm px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-white/10">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="flex gap-4">
-                                        {selectedProject.isPrivate ? (
-                                            <div className="w-full bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 py-3 rounded-lg font-medium text-center border border-gray-200 dark:border-white/10">
-                                                Private Project / Proprietary Source
-                                            </div>
-                                        ) : (
-                                            <>
-                                                <a
-                                                    href={selectedProject.link}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
-                                                >
-                                                    <ExternalLink size={18} />
-                                                    Live Demo
-                                                </a>
-                                                <a
-                                                    href={selectedProject.github}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex-1 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
-                                                >
-                                                    <Github size={18} />
-                                                    Source Code
-                                                </a>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </motion.div>
+                  {/* ASCII or Schematic Accent */}
+                  <div className="font-mono text-[11px] text-[#555555] dark:text-[#888888] line-clamp-3 select-none opacity-80 group-hover/canvas:opacity-100 transition-opacity">
+                    {project.architecture.asciiFlow ? (
+                      <pre className="whitespace-pre overflow-hidden leading-tight text-[10px]">
+                        {project.architecture.asciiFlow}
+                      </pre>
+                    ) : (
+                      <div className="space-y-1">
+                        <div>// Verified Pipeline Module</div>
+                        <div className="text-[#111111] dark:text-[#FFFFFF] font-semibold">{project.architecture.overview}</div>
+                      </div>
                     )}
-                </AnimatePresence>
-            </div>
-        </section>
-    );
+                  </div>
+
+                  <div className="flex items-center gap-4 text-xs font-mono text-[#777777] dark:text-[#A1A1A6] z-10 border-t border-black/5 dark:border-white/5 pt-2">
+                    <span className="flex items-center gap-1">
+                      <CheckCircle2 size={12} className="text-[#111111] dark:text-[#FFFFFF]" />
+                      Audit Verified
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Layers size={12} />
+                      {project.architecture.layers.length} Subsystems
+                    </span>
+                  </div>
+                </div>
+
+                {/* Title & Description */}
+                <div className="space-y-2.5">
+                  <h3
+                    onClick={() => onSelectProject(project)}
+                    className="text-2xl font-semibold text-[#111111] dark:text-[#FFFFFF] tracking-tight hover:underline cursor-pointer"
+                  >
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#777777] dark:text-[#A1A1A6] font-normal leading-relaxed">
+                    {project.summary}
+                  </p>
+                </div>
+
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {project.tags.map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="px-2.5 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Links Bar */}
+              <div className="flex items-center justify-between pt-6 mt-6 border-t border-black/5 dark:border-white/5">
+                <button
+                  onClick={() => onSelectProject(project)}
+                  className="inline-flex items-center gap-2 text-xs font-semibold text-[#111111] dark:text-[#FFFFFF] hover:opacity-75 transition-opacity"
+                >
+                  <FileText size={14} />
+                  <span>View Case Study</span>
+                  <ArrowRight size={13} />
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} GitHub Repository`}
+                      className="p-2 rounded-full text-[#777777] dark:text-[#A1A1A6] hover:text-[#111111] dark:hover:text-[#FFFFFF] bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    >
+                      <Github size={15} />
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} Live Link`}
+                      className="p-2 rounded-full text-[#777777] dark:text-[#A1A1A6] hover:text-[#111111] dark:hover:text-[#FFFFFF] bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-all"
+                    >
+                      <ExternalLink size={15} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Projects;

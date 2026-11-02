@@ -1,87 +1,126 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Code2, Cpu, Database, Compass, CheckCircle } from 'lucide-react';
 
-const About = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({ target: containerRef });
-    const y = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+export const About: React.FC = () => {
+  const pillars = [
+    {
+      icon: Cpu,
+      title: "Systems & Edge AI",
+      description: "Engineering low-latency, edge-first inference pipelines (NVIDIA Jetson, PyTorch, YOLOv8) resilient against extreme communication constraints."
+    },
+    {
+      icon: Database,
+      title: "Offline-First Architectures",
+      description: "Developing transactional local-first databases (Drift SQLite, Riverpod, Supabase Sync Queue) that guarantee 100% uptime without network dependence."
+    },
+    {
+      icon: Compass,
+      title: "Geospatial & Spatial Intelligence",
+      description: "Architecting high-precision geodetic coordinate transformations (PyProj), 2D R-Tree spatial indexing (Shapely), and multi-source cadastral harmonization."
+    },
+    {
+      icon: Code2,
+      title: "Anti-Hallucination & AI Reliability",
+      description: "Implementing deterministic interceptor guards that strictly enforce ground-truth validation against relational databases, eliminating LLM hallucinations."
+    }
+  ];
 
-    const stats = [
-        { label: "Projects", value: "10+" },
-        { label: "Years Exp", value: "2+" },
-        { label: "Clients", value: "5+" },
-    ];
+  const highlights = [
+    { value: "SIH 2025", label: "Grand Finale 1st Place", detail: "EHV Substation Digital Twin" },
+    { value: "SUVIDHA", label: "2nd Runner-up 2026", detail: "10-Model AI Civic Platform" },
+    { value: "Enterprise POS", label: "Production Active", detail: "Gold Showroom Hardware POS" },
+    { value: "35 / 35", label: "Audit Suite Pass Rate", detail: "Zero Flaws in Master Suite" },
+  ];
 
-    return (
-        <section id="about" className="py-20 md:py-32 bg-gray-50 dark:bg-dark-lighter relative overflow-hidden">
-            <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                {/* Left: Image/Graphic */}
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative"
-                >
-                    <div className="w-full h-[400px] bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl border border-gray-200 dark:border-white/10 flex items-center justify-center overflow-hidden backdrop-blur-sm bg-white/50 dark:bg-transparent group">
-                        <img
-                            src="/ajai-selvaraj-profile.jpg"
-                            alt="Ajai Selvaraj"
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            onError={(e) => {
-                                e.currentTarget.style.display = 'none';
-                                const fallbackNode = e.currentTarget.parentElement?.querySelector('.fallback-profile-content');
-                                if (fallbackNode) {
-                                    fallbackNode.classList.remove('hidden');
-                                    fallbackNode.classList.add('flex');
-                                }
-                            }}
-                        />
-                        <div className="fallback-profile-content hidden absolute inset-0 flex-col items-center justify-center p-8 text-center">
-                            <h3 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-500 mb-4">
-                                AJAI SELVARAJ
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-400 text-lg">AI & Data Science Student &<br />AI/ML Developer</p>
-                        </div>
-                    </div>
-                    {/* Decorative element */}
-                    <motion.div
-                        style={{ y }}
-                        className="absolute -top-10 -right-10 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl"
-                    />
-                </motion.div>
+  return (
+    <section id="profile" className="py-24 sm:py-32 px-6 relative bg-light dark:bg-dark">
+      <div className="max-w-5xl mx-auto space-y-16">
+        {/* Section Header */}
+        <div className="space-y-3">
+          <div className="text-xs font-mono tracking-widest uppercase text-[#777777] dark:text-[#A1A1A6]">
+            Section 01 // Professional Profile
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF]">
+            Engineering systems with mathematical rigor and real-world resilience.
+          </h2>
+        </div>
 
-                {/* Right: Content */}
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="space-y-8"
-                >
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Designing the Future of AI,<br /> <span className="text-indigo-500">One Model at a Time.</span>
-                    </h2>
+        {/* Narrative Grid */}
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-[#555555] dark:text-[#A1A1A6] font-normal leading-relaxed">
+            <p>
+              I am a <strong className="text-[#111111] dark:text-[#FFFFFF] font-medium">Computer Science & Business Systems student</strong> and software engineer dedicated to building intelligent systems that solve high-stakes physical and civil engineering challenges.
+            </p>
+            <p>
+              Rather than assembling superficial AI demos, my engineering focus centers on <strong className="text-[#111111] dark:text-[#FFFFFF] font-medium">end-to-end reliability</strong>: from sub-milligram RS-232 serial hardware integration and geodetic coordinate projections, to 3D WebGL telemetry twins and deterministic anti-hallucination validation layers.
+            </p>
+            <p>
+              Whether competing at national hackathons like the <strong className="text-[#111111] dark:text-[#FFFFFF] font-medium">Smart India Hackathon</strong> or deploying commercial POS infrastructure into operating South Indian retail showrooms, I design for performance, architectural transparency, and verified data integrity.
+            </p>
 
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
-                        I am an AI & Data Science student and an AI/ML and Software Developer with a track record of building predictive pipelines, digital twin systems, and scalable web apps.
-                        As a Smart India Hackathon (SIH) 2025 Winner, I combine deep technical reasoning (React, TypeScript, Python, FastAPI) with creative execution to build experiences that feel alive.
-                    </p>
-
-                    <div className="grid grid-cols-3 gap-6 pt-6">
-                        {stats.map((stat, index) => (
-                            <motion.div
-                                key={index}
-                                whileHover={{ scale: 1.05 }}
-                                className="text-center p-4 bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 shadow-sm dark:shadow-none"
-                            >
-                                <h4 className="text-3xl font-bold text-indigo-400">{stat.value}</h4>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{stat.label}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+            <div className="pt-4 flex items-center gap-6 text-xs font-mono text-[#777777] dark:text-[#A1A1A6]">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle size={14} className="text-[#111111] dark:text-[#FFFFFF]" />
+                Zero-Fabrication Architecture
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle size={14} className="text-[#111111] dark:text-[#FFFFFF]" />
+                Offline-First Fault Tolerance
+              </span>
             </div>
-        </section>
-    );
+          </div>
+
+          {/* Stat Pillars */}
+          <div className="lg:col-span-5 grid grid-cols-2 gap-3">
+            {highlights.map((item, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.2 }}
+                className="p-5 rounded-card liquid-glass-card border border-black/5 dark:border-white/10 space-y-2 flex flex-col justify-between"
+              >
+                <div className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF]">
+                  {item.value}
+                </div>
+                <div>
+                  <div className="text-xs font-medium text-[#111111] dark:text-[#FFFFFF]">
+                    {item.label}
+                  </div>
+                  <div className="text-[11px] text-[#777777] dark:text-[#A1A1A6] mt-0.5">
+                    {item.detail}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* 4 Architectural Focus Cards */}
+        <div className="grid sm:grid-cols-2 gap-4 pt-6">
+          {pillars.map((pillar, idx) => {
+            const Icon = pillar.icon;
+            return (
+              <div
+                key={idx}
+                className="p-6 sm:p-7 rounded-panel liquid-glass border border-black/5 dark:border-white/10 space-y-3 hover:border-black/20 dark:hover:border-white/25 transition-all duration-300"
+              >
+                <div className="w-9 h-9 rounded-control bg-black/5 dark:bg-white/10 flex items-center justify-center text-[#111111] dark:text-[#FFFFFF]">
+                  <Icon size={18} />
+                </div>
+                <h3 className="text-base font-semibold text-[#111111] dark:text-[#FFFFFF] tracking-tight">
+                  {pillar.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#777777] dark:text-[#A1A1A6] leading-relaxed">
+                  {pillar.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default About;

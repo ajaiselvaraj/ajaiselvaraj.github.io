@@ -1,100 +1,181 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, Award } from 'lucide-react';
+import { Briefcase, GraduationCap, Calendar, CheckCircle2 } from 'lucide-react';
 
-const experiences = [
+export const Experience: React.FC = () => {
+  const experiences = [
     {
-        id: 0,
-        role: "Winner - Smart India Hackathon (SIH) 2025",
-        company: "Team Oceanberg | Problem ID: SIH25191",
-        date: "Dec 2025",
-        description: "Led development of an AI/ML-based Digital Twin for EHV 400/220 kV substations enabling predictive maintenance, real-time monitoring, and fault analysis.",
-        type: "achievement"
+      type: "work",
+      title: "Lead Software & Systems Architect",
+      organization: "Independent Engineering / Retail Showroom Clients",
+      period: "2024 — Present",
+      location: "Tamil Nadu, India",
+      description: "Designed, engineered, and deployed commercial store management, ERP, and point-of-sale platforms. Built offline-first transactional ledgers using Flutter, Drift SQLite, and Supabase cloud sync. Integrated physical RS-232 serial weighing scales and implemented Indian CGST Rule 46 dual-split tax compliance.",
+      highlights: [
+        "Production deployment handling daily high-value retail jewellery billing",
+        "Sub-milligram scale integration with moving-average jitter stabilization",
+        "Deterministic offline sync ledger ensuring zero transaction loss during network outages"
+      ]
     },
     {
-        id: 1,
-        role: "Runner-up - SUVIDHA 2026",
-        company: "National Level Hackathon",
-        date: "2026",
-        description: "Developed innovative software solutions for civic utility workflows, enabling streamlined governance and public service accessibility.",
-        type: "achievement"
+      type: "project-lead",
+      title: "Lead Systems Architect & 3D Engineering Lead",
+      organization: "Team Oceanberg (Smart India Hackathon 2025)",
+      period: "2025",
+      location: "Grand Finale Winner",
+      description: "Led the engineering team that developed the AI/ML-driven Digital Twin for EHV 400kV/220kV Substations. Developed the Three.js 3D viewport with dynamic HUD parameter overlays, color-temperature emissive shaders, and coordinated FastAPI predictive services.",
+      highlights: [
+        "1st Place Grand Finale Award across nationwide university teams",
+        "Engineered 8 Mbps high-bitrate simulation recorder for substation operations",
+        "Coupled real-time SCADA telemetry with predictive XGBoost & LSTM failure curves"
+      ]
     },
     {
-        id: 2,
-        role: "Full Stack Developer",
-        company: "Freelance",
-        date: "2024 - Present",
-        description: "Developed and deployed custom web applications for diverse clients using React, Node.js, and Supabase. Improved site performance by 40% on average.",
-        type: "experience"
+      type: "work",
+      title: "Full-Stack & Systems Developer",
+      organization: "Freelance & Open Systems Engineering",
+      period: "2023 — 2024",
+      location: "Remote",
+      description: "Delivered responsive web applications, backend microservices, and database models using React, TypeScript, Node.js, and PostgreSQL. Focused on architectural simplicity, performance tuning, and clean component systems.",
+      highlights: [
+        "Constructed modular RESTful services with strict TypeScript type-safety",
+        "Built responsive client portals optimized for low-latency network connections",
+        "Integrated third-party payment and telemetry APIs"
+      ]
     }
-];
+  ];
 
-const Experience = () => {
-    // const containerRef = useRef(null);
-    // const { scrollYProgress } = useScroll({ target: containerRef });
+  const education = [
+    {
+      degree: "Bachelor of Technology — Computer Science & Business Systems",
+      institution: "Anna University Affiliated Institution",
+      period: "2022 — 2026",
+      status: "Final Year Student",
+      description: "Comprehensive curriculum combining computer science foundations with business operations, financial analysis, software engineering management, and intelligent data systems.",
+      coursework: [
+        "Data Structures & Algorithms",
+        "Database Management Systems",
+        "Distributed Computing & Cloud",
+        "Machine Learning & Statistical Modeling",
+        "Software Project Management",
+        "Business Operations & Strategy"
+      ]
+    }
+  ];
 
-    return (
-        <section id="experience" className="py-20 md:py-32 bg-white dark:bg-dark relative overflow-hidden">
-            <div className="container mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-pink-500 dark:from-indigo-400 dark:to-pink-500 mb-4">
-                        Experience & Achievements
-                    </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto rounded-full"></div>
-                </motion.div>
+  return (
+    <section id="experience" className="py-24 sm:py-32 px-6 relative bg-light dark:bg-dark border-t border-black/5 dark:border-white/5">
+      <div className="max-w-5xl mx-auto space-y-16">
+        {/* Section Header */}
+        <div className="space-y-3">
+          <div className="text-xs font-mono tracking-widest uppercase text-[#777777] dark:text-[#A1A1A6]">
+            Section 05 // Experience & Education
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF]">
+            Engineering track record and academic foundation.
+          </h2>
+        </div>
 
-                <div className="relative mx-auto max-w-4xl">
-                    {/* Vertical Line */}
-                    <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500/20 via-pink-500/20 to-transparent ml-6 md:ml-0"></div>
+        {/* Experience Timeline */}
+        <div className="space-y-8">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#777777] dark:text-[#A1A1A6]">
+            <Briefcase size={15} />
+            <span>Professional Roles & Technical Leadership</span>
+          </div>
 
-                    {experiences.map((exp, index) => (
-                        <motion.div
-                            key={exp.id}
-                            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className={`relative flex items-center mb-12 md:justify-between ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-                        >
-                            {/* Dot */}
-                            <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-dark border-2 border-indigo-500 rounded-full z-10 shadow-[0_0_10px_rgba(99,102,241,0.5)]"></div>
-
-                            {/* Content Card */}
-                            <div className="ml-16 md:ml-0 md:w-[45%]">
-                                <div className="group relative bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all hover:border-indigo-500/30 shadow-lg dark:shadow-none">
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-xl opacity-0 group-hover:opacity-20 blur transition duration-500"></div>
-                                    <div className="relative">
-                                        <div className="flex items-center gap-2 mb-2 text-indigo-400">
-                                            {exp.type === 'experience' && <Briefcase size={18} />}
-                                            {exp.type === 'achievement' && <Award size={18} />}
-                                            {exp.type === 'certification' && <Award size={18} />}
-                                            <span className="text-xs font-mono uppercase tracking-wider">{exp.type}</span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-indigo-400 transition-colors">{exp.role}</h3>
-                                        <div className="flex items-center text-sm text-gray-400 mb-4 gap-2">
-                                            <span className="font-semibold text-gray-600 dark:text-gray-300">{exp.company}</span>
-                                            <span>•</span>
-                                            <div className="flex items-center">
-                                                <Calendar size={14} className="mr-1" />
-                                                {exp.date}
-                                            </div>
-                                        </div>
-                                        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{exp.description}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Empty Space for the other side */}
-                            <div className="hidden md:block md:w-[45%]"></div>
-                        </motion.div>
-                    ))}
+          <div className="space-y-6">
+            {experiences.map((exp, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="p-7 sm:p-8 rounded-panel liquid-glass border border-black/10 dark:border-white/10 space-y-4 hover:border-black/20 dark:hover:border-white/20 transition-all duration-300"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-black/5 dark:border-white/5 pb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold text-[#111111] dark:text-[#FFFFFF] tracking-tight">
+                      {exp.title}
+                    </h3>
+                    <div className="text-xs font-mono text-[#777777] dark:text-[#A1A1A6] mt-0.5">
+                      {exp.organization} • {exp.location}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF] self-start sm:self-auto">
+                    <Calendar size={12} />
+                    <span>{exp.period}</span>
+                  </div>
                 </div>
+
+                <p className="text-xs sm:text-sm text-[#777777] dark:text-[#A1A1A6] leading-relaxed">
+                  {exp.description}
+                </p>
+
+                <div className="space-y-2 pt-2">
+                  {exp.highlights.map((h, hIdx) => (
+                    <div key={hIdx} className="flex items-start gap-2 text-xs text-[#111111] dark:text-[#E5E5EA]">
+                      <CheckCircle2 size={13} className="text-[#111111] dark:text-[#FFFFFF] mt-0.5 shrink-0" />
+                      <span>{h}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Education Card */}
+        <div className="space-y-6 pt-6">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#777777] dark:text-[#A1A1A6]">
+            <GraduationCap size={16} />
+            <span>Academic Degree & Coursework</span>
+          </div>
+
+          {education.map((edu, idx) => (
+            <div
+              key={idx}
+              className="p-7 sm:p-8 rounded-panel liquid-glass border border-black/10 dark:border-white/10 space-y-5"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-black/5 dark:border-white/5 pb-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-[#111111] dark:text-[#FFFFFF] tracking-tight">
+                    {edu.degree}
+                  </h3>
+                  <div className="text-xs font-mono text-[#777777] dark:text-[#A1A1A6] mt-0.5">
+                    {edu.institution}
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black text-white dark:bg-white dark:text-black self-start sm:self-auto">
+                  <span>{edu.period} • {edu.status}</span>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-[#777777] dark:text-[#A1A1A6] leading-relaxed">
+                {edu.description}
+              </p>
+
+              <div>
+                <div className="text-xs font-mono uppercase tracking-wider text-[#777777] dark:text-[#A1A1A6] mb-3">
+                  Core Technical & Analytical Foundations
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {edu.coursework.map((course, cIdx) => (
+                    <span
+                      key={cIdx}
+                      className="px-3 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF]"
+                    >
+                      {course}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Experience;
