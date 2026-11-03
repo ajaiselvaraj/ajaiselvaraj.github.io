@@ -49,6 +49,28 @@ export const About: React.FC = () => {
         {/* Narrative Grid */}
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-[#555555] dark:text-[#A1A1A6] font-normal leading-relaxed">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-5 rounded-card liquid-glass-subtle border border-black/5 dark:border-white/10 mb-6">
+              <img
+                src="/images/ajai-selvaraj-profile.jpg"
+                alt="Ajai Selvaraj"
+                width={96}
+                height={96}
+                loading="lazy"
+                className="w-24 h-24 rounded-full object-cover object-top ring-2 ring-black/10 dark:ring-white/20 shrink-0 shadow-md filter grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="space-y-1 text-center sm:text-left">
+                <h3 className="text-lg font-semibold text-[#111111] dark:text-[#FFFFFF] tracking-tight">
+                  Ajai Selvaraj
+                </h3>
+                <p className="text-xs font-mono text-[#777777] dark:text-[#8E8E93]">
+                  Software Engineer & AI Systems Developer
+                </p>
+                <p className="text-xs text-[#555555] dark:text-[#A1A1A6] pt-1">
+                  Primary Subject • Specializing in real-time digital twins, spatial AI harmonization, computer vision & offline-first enterprise applications.
+                </p>
+              </div>
+            </div>
+
             <p>
               I am a <strong className="text-[#111111] dark:text-[#FFFFFF] font-medium">Computer Science & Business Systems student</strong> and software engineer dedicated to building intelligent systems that solve high-stakes physical and civil engineering challenges.
             </p>

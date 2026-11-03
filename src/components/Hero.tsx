@@ -41,6 +41,29 @@ export const Hero: React.FC<HeroProps> = () => {
           </motion.div>
         </div>
 
+        {/* Profile Portrait */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="relative group"
+        >
+          <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full p-1 bg-gradient-to-b from-black/20 via-black/5 to-transparent dark:from-white/30 dark:via-white/10 dark:to-transparent ring-1 ring-black/10 dark:ring-white/15 shadow-xl">
+            <img
+              src="/images/ajai-selvaraj-profile.jpg"
+              alt="Ajai Selvaraj — Software Engineer & AI Systems Developer"
+              width={144}
+              height={144}
+              loading="eager"
+              fetchPriority="high"
+              className="w-full h-full object-cover object-top rounded-full shadow-inner filter grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-500 ease-out"
+            />
+          </div>
+          <div className="absolute -bottom-1 -right-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-black dark:bg-white text-white dark:text-black shadow-md border border-white/20 dark:border-black/20">
+            Available
+          </div>
+        </motion.div>
+
         {/* Name & Primary Headline */}
         <div className="space-y-4">
           <motion.h2
