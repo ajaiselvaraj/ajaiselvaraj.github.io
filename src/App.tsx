@@ -17,7 +17,6 @@ import CustomCursor from './components/CustomCursor';
 import Loading from './components/Loading';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { flagshipProjects, CaseStudyData } from './data/projectsData';
-
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isDark, setIsDark] = useState(true);
