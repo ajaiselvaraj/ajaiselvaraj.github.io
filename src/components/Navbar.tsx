@@ -14,7 +14,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, activeSecti
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -34,19 +34,19 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, activeSecti
   return (
     <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-4 sm:px-6 py-4 flex justify-center">
       <nav
-        className={`w-full max-w-5xl rounded-full transition-all duration-500 flex items-center justify-between px-5 py-2.5 sm:px-6 sm:py-3 ${
+        className={`w-full max-w-6xl rounded-full transition-all duration-500 flex items-center justify-between px-5 py-2.5 sm:px-6 sm:py-3 ${
           scrolled
             ? 'liquid-glass shadow-float dark:shadow-float-dark border border-black/10 dark:border-white/10'
-            : 'bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/5 dark:border-white/5'
+            : 'bg-white/60 dark:bg-black/60 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-sm'
         }`}
       >
         {/* Brand / Logo */}
         <a
           href="#"
-          className="flex items-center gap-2 text-sm font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF] group"
+          className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF] group"
         >
           <span className="w-2.5 h-2.5 rounded-full bg-[#111111] dark:bg-[#FFFFFF] transition-transform duration-300 group-hover:scale-125" />
-          <span className="font-mono text-xs tracking-wider uppercase">Ajai Selvaraj</span>
+          <span className="font-mono text-xs font-semibold tracking-wider uppercase">AJAI SELVARAJ</span>
         </a>
 
         {/* Desktop Navigation Links */}
@@ -57,10 +57,10 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, activeSecti
               <a
                 key={item.name}
                 href={item.href}
-                className={`relative px-3 py-1.5 rounded-full transition-all duration-300 ${
+                className={`relative px-3.5 py-1.5 rounded-full transition-all duration-200 ${
                   isActive
                     ? 'text-[#111111] dark:text-[#FFFFFF] font-semibold'
-                    : 'text-[#777777] dark:text-[#A1A1A6] hover:text-[#111111] dark:hover:text-[#FFFFFF]'
+                    : 'text-[#555555] dark:text-[#A1A1A6] hover:text-[#111111] dark:hover:text-[#FFFFFF]'
                 }`}
               >
                 {isActive && (
@@ -77,20 +77,20 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, activeSecti
         </div>
 
         {/* Right Action Cluster */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           {/* Glass Theme Switcher */}
           <button
             onClick={toggleTheme}
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-            className="p-2 rounded-full text-[#111111] dark:text-[#FFFFFF] bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 border border-black/5 dark:border-white/10 transition-all duration-300"
+            className="p-2 rounded-full text-[#111111] dark:text-[#FFFFFF] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
           >
             {isDark ? <Sun size={15} /> : <Moon size={15} />}
           </button>
 
-          {/* Direct CTA */}
+          {/* Initiate Contact CTA with Arrow */}
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium bg-[#111111] text-white dark:bg-[#FFFFFF] dark:text-[#000000] hover:opacity-90 transition-opacity"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium bg-[#111111] text-white dark:bg-[#FFFFFF] dark:text-[#000000] hover:opacity-90 active:scale-95 transition-all shadow-sm"
           >
             <span>Initiate Contact</span>
             <ArrowUpRight size={13} />

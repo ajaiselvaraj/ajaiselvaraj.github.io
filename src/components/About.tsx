@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Cpu, Database, Compass, CheckCircle } from 'lucide-react';
+import { Cpu, Database, Compass, Code2, GraduationCap, CheckCircle } from 'lucide-react';
 
 export const About: React.FC = () => {
   const pillars = [
@@ -30,11 +30,11 @@ export const About: React.FC = () => {
     { value: "SIH 2025", label: "Grand Finale 1st Place", detail: "EHV Substation Digital Twin" },
     { value: "SUVIDHA", label: "2nd Runner-up 2026", detail: "10-Model AI Civic Platform" },
     { value: "Enterprise POS", label: "Production Active", detail: "Gold Showroom Hardware POS" },
-    { value: "35 / 35", label: "Audit Suite Pass Rate", detail: "Zero Flaws in Master Suite" },
+    { value: "2028", label: "B.Tech Graduation", detail: "CS & Business Systems" },
   ];
 
   return (
-    <section id="profile" className="py-24 sm:py-32 px-6 relative bg-light dark:bg-dark">
+    <section id="profile" className="py-24 sm:py-32 px-6 relative bg-light dark:bg-dark border-t border-black/5 dark:border-white/5">
       <div className="max-w-5xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="space-y-3">
@@ -46,33 +46,34 @@ export const About: React.FC = () => {
           </h2>
         </div>
 
-        {/* Narrative Grid */}
+        {/* Narrative & Editorial Bio Grid */}
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-[#555555] dark:text-[#A1A1A6] font-normal leading-relaxed">
+            {/* Verified Subject Secondary Portrait Badge */}
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-5 rounded-card liquid-glass-subtle border border-black/5 dark:border-white/10 mb-6">
               <img
                 src="/images/ajai-selvaraj-profile.jpg"
                 alt="Ajai Selvaraj"
-                width={96}
-                height={96}
+                width={88}
+                height={88}
                 loading="lazy"
-                className="w-24 h-24 rounded-full object-cover object-top ring-2 ring-black/10 dark:ring-white/20 shrink-0 shadow-md filter grayscale hover:grayscale-0 transition-all duration-300"
+                className="w-20 h-20 rounded-full object-cover object-top ring-2 ring-black/10 dark:ring-white/20 shrink-0 shadow-md filter grayscale hover:grayscale-0 transition-all duration-300"
               />
               <div className="space-y-1 text-center sm:text-left">
-                <h3 className="text-lg font-semibold text-[#111111] dark:text-[#FFFFFF] tracking-tight">
+                <h3 className="text-base font-semibold text-[#111111] dark:text-[#FFFFFF] tracking-tight">
                   Ajai Selvaraj
                 </h3>
                 <p className="text-xs font-mono text-[#777777] dark:text-[#8E8E93]">
-                  Software Engineer & AI Systems Developer
+                  B.Tech Computer Science &amp; Business Systems (Expected 2028)
                 </p>
                 <p className="text-xs text-[#555555] dark:text-[#A1A1A6] pt-1">
-                  Primary Subject • Specializing in real-time digital twins, spatial AI harmonization, computer vision & offline-first enterprise applications.
+                  Primary Subject • Software Engineer &amp; AI Systems Developer. Focused on physical, civil, and industrial hardware-software coupling.
                 </p>
               </div>
             </div>
 
             <p>
-              I am a <strong className="text-[#111111] dark:text-[#FFFFFF] font-medium">Computer Science & Business Systems student</strong> and software engineer dedicated to building intelligent systems that solve high-stakes physical and civil engineering challenges.
+              I am a <strong className="text-[#111111] dark:text-[#FFFFFF] font-medium">Computer Science &amp; Business Systems student</strong> and software engineer dedicated to building intelligent systems that solve high-stakes physical and civil engineering challenges.
             </p>
             <p>
               Rather than assembling superficial AI demos, my engineering focus centers on <strong className="text-[#111111] dark:text-[#FFFFFF] font-medium">end-to-end reliability</strong>: from sub-milligram RS-232 serial hardware integration and geodetic coordinate projections, to 3D WebGL telemetry twins and deterministic anti-hallucination validation layers.
@@ -81,7 +82,7 @@ export const About: React.FC = () => {
               Whether competing at national hackathons like the <strong className="text-[#111111] dark:text-[#FFFFFF] font-medium">Smart India Hackathon</strong> or deploying commercial POS infrastructure into operating South Indian retail showrooms, I design for performance, architectural transparency, and verified data integrity.
             </p>
 
-            <div className="pt-4 flex items-center gap-6 text-xs font-mono text-[#777777] dark:text-[#A1A1A6]">
+            <div className="pt-4 flex flex-wrap items-center gap-6 text-xs font-mono text-[#777777] dark:text-[#A1A1A6]">
               <span className="flex items-center gap-1.5">
                 <CheckCircle size={14} className="text-[#111111] dark:text-[#FFFFFF]" />
                 Zero-Fabrication Architecture
@@ -89,6 +90,10 @@ export const About: React.FC = () => {
               <span className="flex items-center gap-1.5">
                 <CheckCircle size={14} className="text-[#111111] dark:text-[#FFFFFF]" />
                 Offline-First Fault Tolerance
+              </span>
+              <span className="flex items-center gap-1.5">
+                <GraduationCap size={14} className="text-[#111111] dark:text-[#FFFFFF]" />
+                B.Tech CSBS (2024–2028)
               </span>
             </div>
           </div>

@@ -1,160 +1,257 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Award, ShieldCheck, Sparkles, Quote } from 'lucide-react';
+import {
+  Trophy,
+  Award,
+  Code2,
+  ShieldCheck,
+  ArrowUpRight,
+  FileText,
+  Mail,
+  ChevronRight
+} from 'lucide-react';
 
 interface HeroProps {
   isDark?: boolean;
 }
 
 export const Hero: React.FC<HeroProps> = () => {
+  const credentials = [
+    {
+      icon: Trophy,
+      title: 'SIH 2025',
+      subtitle: 'Winner',
+      href: '#achievements',
+    },
+    {
+      icon: Award,
+      title: 'SUVIDHA 2026',
+      subtitle: '2nd Runner-up',
+      href: '#achievements',
+    },
+    {
+      icon: Code2,
+      title: '6+',
+      subtitle: 'Flagship Systems',
+      href: '#projects',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Verified',
+      subtitle: 'Engineering Portfolio',
+      href: '#profile',
+    },
+  ];
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-28 pb-16 overflow-hidden bg-white dark:bg-black text-[#111111] dark:text-[#FFFFFF]"
+      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-28 pb-20 lg:pt-32 lg:pb-24 px-6 overflow-hidden bg-white dark:bg-black text-[#111111] dark:text-[#FFFFFF]"
     >
-      {/* Background Refined Ambient Liquid Glow (Monochrome Only) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
-        <div className="w-[600px] h-[600px] sm:w-[850px] sm:h-[850px] rounded-full bg-black/[0.02] dark:bg-white/[0.025] blur-[120px] transition-all" />
+      {/* ============================================================ */}
+      {/* 1. ATMOSPHERIC BACKDROP & SUBTLE AMBIENT GLOW (z-0)           */}
+      {/* Clean & minimal - no duplicate background silhouettes         */}
+      {/* ============================================================ */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
+        <div className="w-[600px] h-[600px] sm:w-[900px] sm:h-[900px] rounded-full bg-black/[0.012] dark:bg-white/[0.018] blur-[150px]" />
       </div>
 
-      <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center relative z-10 space-y-8">
-        {/* Status Pill Badge & Main Quote Badge */}
-        <div className="flex flex-col sm:flex-row items-center gap-3">
+      {/* ============================================================ */}
+      {/* 2. FLOWING WAVE RIBBON (Layered strictly behind foreground)  */}
+      {/* Stacking Context: z-[5]                                      */}
+      {/* ============================================================ */}
+      <div className="absolute bottom-0 left-0 right-0 w-full pointer-events-none overflow-hidden select-none z-[5]">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full h-28 sm:h-40 md:h-52 lg:h-64"
+        >
+          <img
+            src="/images/hero-wave.png"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-bottom opacity-85 dark:opacity-20 dark:invert transition-all"
+          />
+          {/* Subtle bottom fade to blend smoothly into #profile section */}
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white dark:from-black to-transparent" />
+        </motion.div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* 3. MAIN FOREGROUND 3-COLUMN HEROIC CONTAINER (z-20)          */}
+      {/* In front of waves, halo, and ambient graphics                */}
+      {/* ============================================================ */}
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center relative z-20">
+        
+        {/* ============================================================ */}
+        {/* LEFT COLUMN: Typographic Headline & Actions (col-span-5)     */}
+        {/* ============================================================ */}
+        <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 lg:pr-4 order-2 lg:order-1">
+          {/* Top Pill Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-subtle text-xs font-mono tracking-tight text-[#111111] dark:text-[#FFFFFF]"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glass-subtle text-[11px] sm:text-xs font-mono tracking-tight text-[#111111] dark:text-[#FFFFFF]"
           >
             <span className="w-2 h-2 rounded-full bg-[#111111] dark:bg-[#FFFFFF] animate-pulse" />
-            <span>Computer Science & Business Systems Student</span>
+            <span>Computer Science &amp; Business Systems Student</span>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass text-xs font-mono font-medium tracking-tight text-[#111111] dark:text-[#FFFFFF] border border-black/10 dark:border-white/10"
-          >
-            <Quote size={11} className="text-[#111111] dark:text-[#FFFFFF] opacity-70" />
-            <span>“If it doesn’t exist. Build it.”</span>
-          </motion.div>
-        </div>
+          {/* Main Headline */}
+          <div className="space-y-1">
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-6xl xl:text-[4.25rem] font-bold tracking-tight text-[#111111] dark:text-[#FFFFFF] leading-[1.05]"
+            >
+              Building
+              <br />
+              intelligent
+              <br />
+              systems.
+            </motion.h1>
 
-        {/* Profile Portrait */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative group"
-        >
-          <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full p-1 bg-gradient-to-b from-black/20 via-black/5 to-transparent dark:from-white/30 dark:via-white/10 dark:to-transparent ring-1 ring-black/10 dark:ring-white/15 shadow-xl">
-            <img
-              src="/images/ajai-selvaraj-profile.jpg"
-              alt="Ajai Selvaraj — Software Engineer & AI Systems Developer"
-              width={144}
-              height={144}
-              loading="eager"
-              fetchPriority="high"
-              className="w-full h-full object-cover object-top rounded-full shadow-inner filter grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-500 ease-out"
-            />
+            <motion.h2
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl sm:text-4xl xl:text-[2.6rem] font-medium tracking-tight text-[#777777] dark:text-[#8E8E93] leading-snug pt-2"
+            >
+              Creating meaningful impact.
+            </motion.h2>
           </div>
-          <div className="absolute -bottom-1 -right-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-black dark:bg-white text-white dark:text-black shadow-md border border-white/20 dark:border-black/20">
-            Available
-          </div>
-        </motion.div>
 
-        {/* Name & Primary Headline */}
-        <div className="space-y-4">
-          <motion.h2
+          {/* Supporting Description */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#777777] dark:text-[#A1A1A6]"
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="text-sm sm:text-base text-[#555555] dark:text-[#A1A1A6] font-normal leading-relaxed max-w-md"
           >
-            Ajai Selvaraj
-          </motion.h2>
+            Software Engineer &amp; AI Systems Developer specializing in real-time digital twins,
+            offline-first architectures, spatial AI, and high-reliability engineering.
+          </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
+          {/* Three CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF] leading-[1.08]"
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-2 w-full"
           >
-            Building intelligent systems.
-            <br />
-            <span className="text-[#777777] dark:text-[#8E8E93] font-normal">
-              Creating meaningful impact.
-            </span>
-          </motion.h1>
+            {/* Primary Action Button */}
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium bg-[#111111] text-white dark:bg-[#FFFFFF] dark:text-[#000000] hover:opacity-90 active:scale-95 transition-all shadow-sm"
+            >
+              <span>Explore Projects</span>
+              <ArrowUpRight size={14} />
+            </a>
+
+            {/* View CV Glass Button */}
+            <a
+              href="#resume"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium liquid-glass hover:bg-black/5 dark:hover:bg-white/10 text-[#111111] dark:text-[#FFFFFF] border border-black/10 dark:border-white/15 active:scale-95 transition-all"
+            >
+              <FileText size={14} className="opacity-70" />
+              <span>View CV</span>
+            </a>
+
+            {/* Contact Glass Button */}
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium liquid-glass hover:bg-black/5 dark:hover:bg-white/10 text-[#111111] dark:text-[#FFFFFF] border border-black/10 dark:border-white/15 active:scale-95 transition-all"
+            >
+              <Mail size={14} className="opacity-70" />
+              <span>Contact</span>
+            </a>
+          </motion.div>
         </div>
 
-        {/* Roles Descriptor */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base sm:text-lg text-[#777777] dark:text-[#A1A1A6] max-w-2xl font-normal leading-relaxed"
-        >
-          Software Engineer & AI Systems Developer specializing in real-time digital twins, spatial AI harmonization, computer vision, and offline-first enterprise applications.
-        </motion.p>
+        {/* ============================================================ */}
+        {/* CENTER COLUMN: Heroic Profile Portrait (Lg: col-span-4)      */}
+        {/* Centered within halo circle, scaled larger, color on hover   */}
+        {/* ============================================================ */}
+        <div className="lg:col-span-4 flex items-center justify-center relative order-1 lg:order-2 my-2 lg:my-0">
+          {/* Subtle Halo Glow backdrop */}
+          <div className="absolute w-[380px] h-[380px] sm:w-[500px] sm:h-[500px] lg:w-[560px] lg:h-[560px] rounded-full bg-white/70 dark:bg-white/[0.04] blur-2xl pointer-events-none -z-10" />
 
-        {/* Engineering Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap justify-center items-center gap-2 pt-2"
-        >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF] border border-black/5 dark:border-white/5">
-            <Award size={13} />
-            SIH 2025 Winner
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF] border border-black/5 dark:border-white/5">
-            <Sparkles size={13} />
-            SUVIDHA 2026 Runner-up
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#FFFFFF] border border-black/5 dark:border-white/5">
-            <ShieldCheck size={13} />
-            Production POS Deployed
-          </span>
-        </motion.div>
+          {/* Minimalist Circular Halo Ring — perfectly frames upper body */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] lg:w-[540px] lg:h-[540px] xl:w-[580px] xl:h-[580px] rounded-full border border-black/[0.08] dark:border-white/[0.14] bg-gradient-to-b from-white/70 via-white/15 to-transparent dark:from-white/[0.08] dark:via-white/[0.02] dark:to-transparent z-0 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.06)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.7)] pointer-events-none"
+          />
 
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center gap-3 pt-4 w-full sm:w-auto"
-        >
-          <a
-            href="#projects"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium bg-[#111111] text-white dark:bg-[#FFFFFF] dark:text-[#000000] hover:opacity-90 transition-all shadow-sm active:scale-95"
+          {/* Heroic Portrait Container — Shifted up & scaled larger to visually center head/chest in the circle */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 w-[330px] sm:w-[450px] lg:w-[520px] xl:w-[560px] h-[460px] sm:h-[590px] lg:h-[680px] xl:h-[720px] flex items-center justify-center select-none group cursor-pointer -translate-y-4 sm:-translate-y-6 lg:-translate-y-8"
           >
-            <span>Explore Flagship Projects</span>
-            <ArrowDown size={14} />
-          </a>
+            <img
+              src="/images/ajai-portrait-cutout.png"
+              alt="Ajai Selvaraj — Software Engineer & AI Systems Developer"
+              width={560}
+              height={720}
+              fetchPriority="high"
+              loading="eager"
+              className="w-full h-full object-contain object-center filter grayscale contrast-[1.08] brightness-[0.98] group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 transition-all duration-500 ease-out drop-shadow-[0_20px_35px_rgba(0,0,0,0.16)] drop-shadow-[0_36px_50px_rgba(0,0,0,0.10)] dark:drop-shadow-[0_20px_45px_rgba(255,255,255,0.08)]"
+            />
+          </motion.div>
+        </div>
 
-          <a
-            href="#profile"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium liquid-glass hover:bg-black/5 dark:hover:bg-white/10 text-[#111111] dark:text-[#FFFFFF] transition-all active:scale-95"
+        {/* ============================================================ */}
+        {/* RIGHT COLUMN: Vertically Stacked Floating Panel (col-span-3) */}
+        {/* ============================================================ */}
+        <div className="lg:col-span-3 flex flex-col justify-center order-3 lg:pl-2">
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-sm mx-auto lg:max-w-none rounded-panel liquid-glass border border-black/10 dark:border-white/15 p-3.5 sm:p-4 shadow-float dark:shadow-float-dark space-y-2 backdrop-blur-2xl"
           >
-            <span>Technical Profile</span>
-            <ArrowUpRight size={14} />
-          </a>
-        </motion.div>
+            {credentials.map((cred, idx) => {
+              const Icon = cred.icon;
+              return (
+                <a
+                  key={idx}
+                  href={cred.href}
+                  className="group flex items-center justify-between p-3 rounded-control hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200 border border-transparent hover:border-black/5 dark:hover:border-white/10"
+                >
+                  <div className="flex items-center gap-3.5">
+                    {/* Minimalist Icon Badge */}
+                    <div className="w-10 h-10 rounded-full liquid-glass-subtle flex items-center justify-center text-[#111111] dark:text-[#FFFFFF] border border-black/5 dark:border-white/10 shrink-0 group-hover:scale-105 transition-transform">
+                      <Icon size={17} strokeWidth={1.8} />
+                    </div>
+
+                    {/* Text Hierarchy */}
+                    <div className="text-left">
+                      <div className="text-sm font-semibold text-[#111111] dark:text-[#FFFFFF] tracking-tight group-hover:text-black dark:group-hover:text-white">
+                        {cred.title}
+                      </div>
+                      <div className="text-xs text-[#777777] dark:text-[#A1A1A6] font-normal">
+                        {cred.subtitle}
+                      </div>
+                    </div>
+                  </div>
+
+                  <ChevronRight
+                    size={15}
+                    className="text-[#777777] dark:text-[#A1A1A6] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all"
+                  />
+                </a>
+              );
+            })}
+          </motion.div>
+        </div>
+
       </div>
-
-      {/* Subtle Scroll Cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[#777777] dark:text-[#A1A1A6] text-xs font-mono"
-      >
-        <span className="tracking-widest uppercase text-[10px]">Scroll</span>
-        <ArrowDown size={12} className="animate-bounce" />
-      </motion.div>
     </section>
   );
 };
