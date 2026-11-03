@@ -46,48 +46,46 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-28 pb-20 lg:pt-32 lg:pb-24 px-6 overflow-hidden bg-white dark:bg-black text-[#111111] dark:text-[#FFFFFF]"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-12 lg:pt-28 lg:pb-16 px-6 sm:px-10 lg:px-14 overflow-hidden bg-[#FFFFFF] dark:bg-[#000000] text-[#111111] dark:text-[#FFFFFF]"
     >
       {/* ============================================================ */}
-      {/* 1. ATMOSPHERIC BACKDROP & SUBTLE AMBIENT GLOW (z-0)           */}
-      {/* Clean & minimal - no duplicate background silhouettes         */}
+      {/* 1. ATMOSPHERIC BACKDROP & SUBTLE PROFILE SILHOUETTE (z-0)    */}
+      {/* Exactly matches reference: faint side silhouette on the right*/}
       {/* ============================================================ */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-0">
-        <div className="w-[600px] h-[600px] sm:w-[900px] sm:h-[900px] rounded-full bg-black/[0.012] dark:bg-white/[0.018] blur-[150px]" />
+      <div className="absolute right-0 top-1/2 -translate-y-[45%] w-[520px] sm:w-[650px] lg:w-[740px] xl:w-[820px] h-[550px] sm:h-[680px] lg:h-[760px] pointer-events-none z-0 overflow-hidden select-none opacity-[0.24] dark:opacity-[0.14] mix-blend-multiply dark:mix-blend-screen transition-opacity">
+        <img
+          src="/images/ajai-silhouette-bg.png"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-contain object-right filter grayscale contrast-125"
+        />
       </div>
 
       {/* ============================================================ */}
-      {/* 2. FLOWING WAVE RIBBON (Layered strictly behind foreground)  */}
+      {/* 2. FLOWING WAVE RIBBON (Layered across bottom in background) */}
       {/* Stacking Context: z-[5]                                      */}
       {/* ============================================================ */}
       <div className="absolute bottom-0 left-0 right-0 w-full pointer-events-none overflow-hidden select-none z-[5]">
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full h-28 sm:h-40 md:h-52 lg:h-64"
-        >
+        <div className="relative w-full h-24 sm:h-36 md:h-44 lg:h-56">
           <img
             src="/images/hero-wave.png"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-bottom opacity-85 dark:opacity-20 dark:invert transition-all"
+            className="w-full h-full object-cover object-bottom opacity-95 dark:opacity-25 dark:invert transition-all"
           />
-          {/* Subtle bottom fade to blend smoothly into #profile section */}
-          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white dark:from-black to-transparent" />
-        </motion.div>
+        </div>
       </div>
 
       {/* ============================================================ */}
-      {/* 3. MAIN FOREGROUND 3-COLUMN HEROIC CONTAINER (z-20)          */}
-      {/* In front of waves, halo, and ambient graphics                */}
+      {/* 3. MAIN FOREGROUND 3-COLUMN HEROIC COMPOSITION (z-20)        */}
+      {/* Left: Typography | Center: Large Portrait | Right: Panel     */}
       {/* ============================================================ */}
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center relative z-20">
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-2 items-center relative z-20">
         
         {/* ============================================================ */}
         {/* LEFT COLUMN: Typographic Headline & Actions (col-span-5)     */}
         {/* ============================================================ */}
-        <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 lg:pr-4 order-2 lg:order-1">
+        <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 lg:pr-6 order-2 lg:order-1">
           {/* Top Pill Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -105,7 +103,7 @@ export const Hero: React.FC<HeroProps> = () => {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-6xl xl:text-[4.25rem] font-bold tracking-tight text-[#111111] dark:text-[#FFFFFF] leading-[1.05]"
+              className="text-4xl sm:text-6xl xl:text-[4.5rem] font-bold tracking-tight text-[#111111] dark:text-[#FFFFFF] leading-[1.02]"
             >
               Building
               <br />
@@ -118,7 +116,7 @@ export const Hero: React.FC<HeroProps> = () => {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-2xl sm:text-4xl xl:text-[2.6rem] font-medium tracking-tight text-[#777777] dark:text-[#8E8E93] leading-snug pt-2"
+              className="text-2xl sm:text-4xl xl:text-[2.75rem] font-medium tracking-tight text-[#777777] dark:text-[#8E8E93] leading-snug pt-2"
             >
               Creating meaningful impact.
             </motion.h2>
@@ -172,44 +170,45 @@ export const Hero: React.FC<HeroProps> = () => {
         </div>
 
         {/* ============================================================ */}
-        {/* CENTER COLUMN: Heroic Profile Portrait (Lg: col-span-4)      */}
-        {/* Centered within halo circle, scaled larger, color on hover   */}
+        {/* CENTER COLUMN: Heroic Profile Portrait & Heavenly Gold Halo  */}
+        {/* Hover triggers Heavenly Yellow / Gold ambient halo radiance  */}
         {/* ============================================================ */}
-        <div className="lg:col-span-4 flex items-center justify-center relative order-1 lg:order-2 my-2 lg:my-0">
-          {/* Subtle Halo Glow backdrop */}
-          <div className="absolute w-[380px] h-[380px] sm:w-[500px] sm:h-[500px] lg:w-[560px] lg:h-[560px] rounded-full bg-white/70 dark:bg-white/[0.04] blur-2xl pointer-events-none -z-10" />
+        <div className="lg:col-span-4 flex items-end justify-center relative order-1 lg:order-2 self-end h-[420px] sm:h-[520px] lg:h-[580px] xl:h-[640px] group cursor-pointer">
+          {/* 1. Deep Heavenly Gold Ambient Bloom (Ignites on Hover) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[52%] w-[330px] h-[330px] sm:w-[430px] sm:h-[430px] lg:w-[480px] lg:h-[480px] xl:w-[520px] xl:h-[520px] rounded-full bg-gradient-to-tr from-[#F59E0B]/20 via-[#FBBF24]/30 to-[#FEF08A]/40 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out pointer-events-none -z-10" />
 
-          {/* Minimalist Circular Halo Ring — perfectly frames upper body */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] lg:w-[540px] lg:h-[540px] xl:w-[580px] xl:h-[580px] rounded-full border border-black/[0.08] dark:border-white/[0.14] bg-gradient-to-b from-white/70 via-white/15 to-transparent dark:from-white/[0.08] dark:via-white/[0.02] dark:to-transparent z-0 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.06)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.7)] pointer-events-none"
+          {/* 2. Soft Heavenly Yellow Halo Outer Aura */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[52%] w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] lg:w-[470px] lg:h-[470px] xl:w-[500px] xl:h-[500px] rounded-full blur-xl opacity-0 group-hover:opacity-100 bg-[#FACC15]/25 transition-all duration-700 ease-out pointer-events-none z-0" />
+
+          {/* 3. Circular Halo Ring Backdrop (White/Monochrome -> Heavenly Gold on hover) */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[52%] w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] lg:w-[470px] lg:h-[470px] xl:w-[500px] xl:h-[500px] rounded-full border border-black/[0.08] dark:border-white/[0.14] group-hover:border-[#F59E0B]/60 dark:group-hover:border-[#FDE047]/70 bg-gradient-to-b from-white/70 via-white/15 to-transparent dark:from-white/[0.08] dark:via-white/[0.02] dark:to-transparent group-hover:from-[#FEF3C7]/40 group-hover:via-[#FDE68A]/15 group-hover:to-transparent dark:group-hover:from-[#F59E0B]/20 dark:group-hover:via-[#FBBF24]/05 z-0 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.06)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.7)] group-hover:shadow-[0_0_50px_rgba(251,191,36,0.45),0_0_100px_rgba(245,158,11,0.25)] transition-all duration-700 ease-out pointer-events-none"
           />
 
-          {/* Heroic Portrait Container — Shifted up & scaled larger to visually center head/chest in the circle */}
+          {/* 4. Heroic Portrait Image */}
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 w-[330px] sm:w-[450px] lg:w-[520px] xl:w-[560px] h-[460px] sm:h-[590px] lg:h-[680px] xl:h-[720px] flex items-center justify-center select-none group cursor-pointer -translate-y-4 sm:-translate-y-6 lg:-translate-y-8"
+            className="relative z-10 w-full h-full flex items-end justify-center select-none"
           >
             <img
               src="/images/ajai-portrait-cutout.png"
               alt="Ajai Selvaraj — Software Engineer & AI Systems Developer"
-              width={560}
-              height={720}
+              width={520}
+              height={640}
               fetchPriority="high"
               loading="eager"
-              className="w-full h-full object-contain object-center filter grayscale contrast-[1.08] brightness-[0.98] group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 transition-all duration-500 ease-out drop-shadow-[0_20px_35px_rgba(0,0,0,0.16)] drop-shadow-[0_36px_50px_rgba(0,0,0,0.10)] dark:drop-shadow-[0_20px_45px_rgba(255,255,255,0.08)]"
+              className="w-auto h-full max-h-full object-contain object-bottom filter grayscale contrast-[1.06] brightness-[0.98] group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 transition-all duration-500 ease-out drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_20px_45px_rgba(245,158,11,0.30)] dark:drop-shadow-[0_15px_40px_rgba(255,255,255,0.06)] dark:group-hover:drop-shadow-[0_20px_50px_rgba(251,191,36,0.35)]"
             />
           </motion.div>
         </div>
 
         {/* ============================================================ */}
         {/* RIGHT COLUMN: Vertically Stacked Floating Panel (col-span-3) */}
+        {/* Clean 4-row glass card matching reference                    */}
         {/* ============================================================ */}
-        <div className="lg:col-span-3 flex flex-col justify-center order-3 lg:pl-2">
+        <div className="lg:col-span-3 flex flex-col justify-center order-3 lg:pl-4">
           <motion.div
             initial={{ opacity: 0, x: 25 }}
             animate={{ opacity: 1, x: 0 }}
